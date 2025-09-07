@@ -79,7 +79,10 @@ function renderPlayers() {
       <div class="player-info">
         <img class="player-avatar" src="${p.avatar}" alt="${p.name}">
         <div class="player-details">
-          <span class="player-name">${p.name} <span class="player-region">${p.region}</span></span>
+          <span class="player-name">
+          ${p.name}
+             <span class="player-region ${String(p.region || "").toLowerCase()}">${p.region}</span>
+          </span>
           <span class="player-points">${p.points} pts <span class="points-badge ${badge.class}">${badge.label}</span></span>
         </div>
       </div>
@@ -87,12 +90,10 @@ function renderPlayers() {
     `;
     row.addEventListener("click", () => openPlayerModal(p));
 
-    // ✅ Add hidden data attributes for context menu
+    // ✅ Store player data for context menu
     row.dataset.uuid = p.uuid;
     row.dataset.username = p.name;
-    row.dataset.tiers = Object.entries(p.tiers)
-      .map(([gm, tier]) => `${gm.toUpperCase()}: ${tier}`)
-      .join(", ");
+    row.dataset.tiers = JSON.stringify(p.tiers);
 
     container.appendChild(row);
   });
@@ -101,18 +102,31 @@ function renderPlayers() {
 function openPlayerModal(player) {
   const modal = document.getElementById("playerModal");
   const body = document.getElementById("modalBody");
+
   body.innerHTML = `
-    <h2>${player.name}</h2>
-    <img src="${player.avatar}" style="width:80px; border-radius:12px; margin:10px auto; display:block;">
+    <h2>
+      ${player.name}
+      <span class="player-region ${String(player.region || "").toLowerCase()}">
+        ${player.region}
+      </span>
+    </h2>
+    <img src="${player.avatar}" 
+         style="width:80px; border-radius:12px; margin:10px auto; display:block;">
     <table style="width:100%">
       <tr><th>Gamemode</th><th>Tier</th><th>Points</th></tr>
       ${Object.entries(player.tiers).map(([gm,tier]) =>
-        `<tr><td>${gm.toUpperCase()}</td><td><span class="tier ${tier.toLowerCase()}">${tier}</span></td><td>${tierPoints[tier]}</td></tr>`
+        `<tr>
+          <td>${gm.toUpperCase()}</td>
+          <td><span class="tier ${tier.toLowerCase()}">${tier}</span></td>
+          <td>${tierPoints[tier]}</td>
+        </tr>`
       ).join("")}
     </table>
   `;
+
   modal.style.display = "flex";
 }
+
 
 document.getElementById("closeModal").addEventListener("click", () => {
   document.getElementById("playerModal").style.display = "none";
@@ -166,3 +180,55 @@ document.getElementById("nextPageBtn").addEventListener("click", () => {
 });
 
 showPage(0);
+
+// =======================
+// Context Menu
+// =======================
+const contextMenu = document.getElementById("playerContextMenu");
+let contextPlayer = null;
+
+// Show context menu on right-click
+document.addEventListener("contextmenu", (e) => {
+  const row = e.target.closest(".player-row");
+  if (row) {
+    e.preventDefault();
+
+    // Get player data stored on the row
+    contextPlayer = {
+      name: row.dataset.username,
+      uuid: row.dataset.uuid,
+      tiers: row.dataset.tiers
+    };
+
+    // Position the menu
+    contextMenu.style.top = `${e.pageY}px`;
+    contextMenu.style.left = `${e.pageX}px`;
+    contextMenu.style.display = "block";
+  } else {
+    contextMenu.style.display = "none";
+  }
+});
+
+// Handle clicks in the menu
+contextMenu.addEventListener("click", (e) => {
+  if (!contextPlayer) return;
+  const action = e.target.dataset.action;
+  if (action === "uuid") {
+    navigator.clipboard.writeText(contextPlayer.uuid);
+  } else if (action === "username") {
+    navigator.clipboard.writeText(contextPlayer.name);
+  } else if (action === "tiers") {
+    navigator.clipboard.writeText(contextPlayer.tiers);
+  }
+  contextMenu.style.display = "none";
+});
+
+// Hide menu on outside click or Esc
+document.addEventListener("click", () => {
+  contextMenu.style.display = "none";
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    contextMenu.style.display = "none";
+  }
+});
