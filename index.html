@@ -783,51 +783,33 @@
         :root #playerModal table tr:not(:last-child) td {
             border-bottom: 1px solid #334155;
         }
-        .player-region {
-    		display: inline-block;
-    		padding: 4px 10px;
-    		border-radius: 12px;
-    		font-size: 14px;
-    		font-weight: 600;
-    		color: white;
-    		background: linear-gradient(135deg, #22c55e, #16a34a); /* default green */
-    		text-transform: uppercase;
-    		letter-spacing: 0.5px;
-    		align-self: center;
-    		justify-self: start;
+		.player-name{
+  			display:inline-flex;
+  			align-items:center;
+  			gap:8px;
 		}
 
-		.player-region.na {
-    		background: linear-gradient(135deg, #22c55e, #16a34a);
+		.player-region{
+  			display:inline-block;
+  			padding:3px 10px;
+  			border-radius:999px;
+  			font-size:12px;
+  			line-height:1;
+  			font-weight:700;
+  			letter-spacing:.4px;
+  			color:#fff !important;
+  			box-shadow:0 2px 8px rgba(0,0,0,.25);
 		}
 
-		.player-region.eu {
-    		background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-		}
+		.player-region.na{ background:linear-gradient(135deg,#22c55e,#16a34a); } /* North America */
+		.player-region.eu{ background:linear-gradient(135deg,#3b82f6,#1d4ed8); } /* Europe */
+		.player-region.as{ background:linear-gradient(135deg,#f59e0b,#d97706); } /* Asia */
+		.player-region.sa{ background:linear-gradient(135deg,#ef4444,#b91c1c); } /* South America */
+		.player-region.me{ background:linear-gradient(135deg,#8b5cf6,#6d28d9); } /* Middle East */
+		.player-region.au{ background:linear-gradient(135deg,#06b6d4,#0e7490); } /* Australia */
+		.player-region.af{ background:linear-gradient(135deg,#f97316,#b45309); } /* Africa */
+		.player-region.unknown { background:#444; } /* Fallback */
 
-		.player-region.as {
-    		background: linear-gradient(135deg, #f59e0b, #d97706);
-		}
-
-		.player-region.sa {
-    		background: linear-gradient(135deg, #ef4444, #b91c1c);
-		}
-
-		.player-region.me {
-    		background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-		}
-
-		.player-region.au {
-    		background: linear-gradient(135deg, #06b6d4, #0e7490);
-		}
-
-		.player-region.af {
-    		background: linear-gradient(135deg, #f97316, #b45309);
-		}
-        :root .player-region {
-            background: #1e1e1e;
-            color: #f5f5f5;
-        }
     </style>
 </head>
 <body>
