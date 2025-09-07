@@ -93,7 +93,6 @@ function renderPlayers() {
     // ✅ Store player data for context menu
     row.dataset.username = p.name;
     row.dataset.tiers = JSON.stringify(p.tiers);
-    row.dataset.points = p.points;
 
     container.appendChild(row);
   });
@@ -191,7 +190,6 @@ document.addEventListener("contextmenu", (e) => {
     contextPlayer = {
       name: row.dataset.username,
       tiers: row.dataset.tiers,
-      points: row.dataset.points
     };
 
     contextMenu.style.top = `${e.pageY}px`;
@@ -205,9 +203,7 @@ document.addEventListener("contextmenu", (e) => {
 contextMenu.addEventListener("click", (e) => {
   if (!contextPlayer) return;
   const action = e.target.dataset.action;
-  if (action === "points") {
-    navigator.clipboard.writeText(contextPlayer.points);
-  } else if (action === "username") {
+  if (action === "username") {
     navigator.clipboard.writeText(contextPlayer.name);
   } else if (action === "tiers") {
     navigator.clipboard.writeText(contextPlayer.tiers);
