@@ -79,7 +79,10 @@ function renderPlayers() {
       <div class="player-info">
         <img class="player-avatar" src="${p.avatar}" alt="${p.name}">
         <div class="player-details">
-          <span class="player-name">${p.name} <span class="player-region">${p.region}</span></span>
+          <span class="player-name">
+             ${p.name}
+             <span class="player-region ${p.region.toLowerCase()}">${p.region}</span>
+          </span>
           <span class="player-points">${p.points} pts <span class="points-badge ${badge.class}">${badge.label}</span></span>
         </div>
       </div>
