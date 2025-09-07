@@ -79,16 +79,21 @@ function renderPlayers() {
       <div class="player-info">
         <img class="player-avatar" src="${p.avatar}" alt="${p.name}">
         <div class="player-details">
-          <span class="player-name">
-          ${p.name}
-             <span class="player-region ${String(p.region || "").toLowerCase()}">${p.region}</span>
-          </span>
+          <span class="player-name">${p.name} <span class="player-region">${p.region}</span></span>
           <span class="player-points">${p.points} pts <span class="points-badge ${badge.class}">${badge.label}</span></span>
         </div>
       </div>
       <div class="gamemode-tiers">${gamemodeDisplay}</div>
     `;
     row.addEventListener("click", () => openPlayerModal(p));
+
+    // ✅ Add hidden data attributes for context menu
+    row.dataset.uuid = p.uuid;
+    row.dataset.username = p.name;
+    row.dataset.tiers = Object.entries(p.tiers)
+      .map(([gm, tier]) => `${gm.toUpperCase()}: ${tier}`)
+      .join(", ");
+
     container.appendChild(row);
   });
 }
@@ -96,31 +101,18 @@ function renderPlayers() {
 function openPlayerModal(player) {
   const modal = document.getElementById("playerModal");
   const body = document.getElementById("modalBody");
-
   body.innerHTML = `
-    <h2>
-      ${player.name}
-      <span class="player-region ${String(player.region || "").toLowerCase()}">
-        ${player.region}
-      </span>
-    </h2>
-    <img src="${player.avatar}" 
-         style="width:80px; border-radius:12px; margin:10px auto; display:block;">
+    <h2>${player.name}</h2>
+    <img src="${player.avatar}" style="width:80px; border-radius:12px; margin:10px auto; display:block;">
     <table style="width:100%">
       <tr><th>Gamemode</th><th>Tier</th><th>Points</th></tr>
       ${Object.entries(player.tiers).map(([gm,tier]) =>
-        `<tr>
-          <td>${gm.toUpperCase()}</td>
-          <td><span class="tier ${tier.toLowerCase()}">${tier}</span></td>
-          <td>${tierPoints[tier]}</td>
-        </tr>`
+        `<tr><td>${gm.toUpperCase()}</td><td><span class="tier ${tier.toLowerCase()}">${tier}</span></td><td>${tierPoints[tier]}</td></tr>`
       ).join("")}
     </table>
   `;
-
   modal.style.display = "flex";
 }
-
 
 document.getElementById("closeModal").addEventListener("click", () => {
   document.getElementById("playerModal").style.display = "none";
