@@ -308,7 +308,7 @@
 
         .leaderboard-header {
             display: grid;
-            grid-template-columns: 80px 1fr 300px;
+            grid-template-columns: 90px 1fr 300px;
             gap: 30px;
             padding: 20px 0;
             border-bottom: 2px solid rgba(255,255,255,0.1);
@@ -590,6 +590,36 @@
             font-weight: 500;
         }
 
+		.context-menu {
+  			position: absolute;
+  			display: none;
+  			color: #e0e0e0;
+  			border: 1px solid #1f2937;
+  			border-radius: 6px;
+  			box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  			z-index: 1000;
+  			padding: 6px 0;
+  			min-width: 160px;
+  			font-size: 14px;
+		}
+
+		.context-menu ul {
+  			list-style: none;
+  			margin: 0;
+  			padding: 0;
+		}
+
+		.context-menu li {
+  			padding: 8px 12px;
+  			color: #e0e0e0;
+ 			cursor: pointer;
+		}
+
+		.context-menu li:hover {
+  			background: #374151;
+		}
+
+
         #copyPopup {
 			position: absolute;
 			top: -50px;
@@ -783,22 +813,33 @@
         :root #playerModal table tr:not(:last-child) td {
             border-bottom: 1px solid #334155;
         }
-        .player-region {
-            display: inline-block;
-            margin-left: 8px;
-            padding: 2px 8px;
-            border-radius: 8px;
-            background: #1e1e1e;
-            color: #f5f5f5;
-            font-size: 0.85em;
-            font-weight: 600;
-            vertical-align: middle;
-            letter-spacing: 1px;
-        }
-        :root .player-region {
-            background: #1e1e1e;
-            color: #f5f5f5;
-        }
+		.player-name{
+  			display:inline-flex;
+  			align-items:center;
+  			gap:8px;
+		}
+
+		.player-region{
+  			display:inline-block;
+  			padding:3px 10px;
+  			border-radius:8px;
+  			font-size:12px;
+  			line-height:1;
+  			font-weight:700;
+  			letter-spacing:.4px;
+  			color:#fff !important;
+  			box-shadow:0 2px 8px rgba(0,0,0,.25);
+		}
+
+		.player-region.na{ background:linear-gradient(135deg,#22c55e,#16a34a); } /* North America */
+		.player-region.eu{ background:linear-gradient(135deg,#3b82f6,#1d4ed8); } /* Europe */
+		.player-region.as{ background:linear-gradient(135deg,#f59e0b,#d97706); } /* Asia */
+		.player-region.sa{ background:linear-gradient(135deg,#ef4444,#b91c1c); } /* South America */
+		.player-region.me{ background:linear-gradient(135deg,#8b5cf6,#6d28d9); } /* Middle East */
+		.player-region.au{ background:linear-gradient(135deg,#06b6d4,#0e7490); } /* Australia */
+		.player-region.af{ background:linear-gradient(135deg,#f97316,#b45309); } /* Africa */
+		.player-region.unknown { background:#444; } /* Fallback */
+
     </style>
 </head>
 <body>
@@ -831,6 +872,13 @@
             <p>Axis Team's tierlist</p>
             <input type="text" class="search-box" id="searchBox" placeholder="Search for a player...">
         </div>
+<div id="playerContextMenu" class="context-menu">
+  <ul>
+	<h1>Copy Player Info</h1>
+    <li data-action="username">📋 Copy Username</li>
+    <li data-action="tiers">📋 Copy Tiers</li>
+  </ul>
+</div>
 <div class="leaderboard">
   <div class="gamemode-switcher">
     <button id="prevPageBtn" class="arrow-btn">⟵</button>
@@ -965,11 +1013,10 @@
     </div>
     <button id="nextPageBtn" class="arrow-btn">⟶</button>
   </div>
-
   <div class="leaderboard-header" id="leaderboardHeader">
-    <div>Rank</div>
-    <div>Player</div>
-    <div>Gamemode Tiers</div>
+    <div>🥇 Rank</div>
+    <div>👤 Player</div>
+    <div>🎮 Gamemode Tiers</div>
   </div>
   <div id="playerList">
     <div class="loading">Loading players...</div>
