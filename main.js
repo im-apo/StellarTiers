@@ -93,6 +93,7 @@ function renderPlayers() {
     // ✅ Store player data for context menu
     row.dataset.username = p.name;
     row.dataset.tiers = JSON.stringify(p.tiers);
+    row.dataset.points = p.points;
 
     container.appendChild(row);
   });
@@ -179,27 +180,36 @@ document.getElementById("nextPageBtn").addEventListener("click", () => {
 
 showPage(0);
 
+// =======================
+// Context Menu
+// =======================
 const contextMenu = document.getElementById("playerContextMenu");
 let contextPlayer = null;
 
-document.addEventListener("contextmenu", (e) => {
+// Show context menu only on player rows
+document.querySelector("#playerList").addEventListener("contextmenu", (e) => {
   const row = e.target.closest(".player-row");
   if (row) {
     e.preventDefault();
 
+    // Get player data stored on the row
     contextPlayer = {
       name: row.dataset.username,
-      tiers: row.dataset.tiers,
+      points: row.dataset.points,
+      tiers: row.dataset.tiers
     };
 
+    // Update label dynamically
+    contextMenu.querySelector(".context-label").innerText = `Profile – ${contextPlayer.name}`;
+
+    // Position the menu
     contextMenu.style.top = `${e.pageY}px`;
     contextMenu.style.left = `${e.pageX}px`;
     contextMenu.style.display = "block";
-  } else {
-    contextMenu.style.display = "none";
   }
 });
 
+// Handle clicks in the menu
 contextMenu.addEventListener("click", (e) => {
   if (!contextPlayer) return;
   const action = e.target.dataset.action;
@@ -207,10 +217,13 @@ contextMenu.addEventListener("click", (e) => {
     navigator.clipboard.writeText(contextPlayer.name);
   } else if (action === "tiers") {
     navigator.clipboard.writeText(contextPlayer.tiers);
+  } else if (action === "points") {
+    navigator.clipboard.writeText(contextPlayer.points);
   }
   contextMenu.style.display = "none";
 });
 
+// Hide menu on outside click or Esc
 document.addEventListener("click", () => {
   contextMenu.style.display = "none";
 });
