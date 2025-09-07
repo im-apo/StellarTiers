@@ -590,36 +590,6 @@
             font-weight: 500;
         }
 
-		.context-menu {
-  			position: absolute;
-  			display: none;
-  			color: #e0e0e0;
-  			border: 1px solid #e0e0e0;
-  			border-radius: 6px;
-  			box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  			z-index: 1000;
-  			padding: 6px 0;
-  			min-width: 160px;
-  			font-size: 14px;
-		}
-
-		.context-menu ul {
-  			list-style: none;
-  			margin: 0;
-  			padding: 0;
-		}
-
-		.context-menu li {
-  			padding: 8px 12px;
-  			color: #e0e0e0;
- 			cursor: pointer;
-		}
-
-		.context-menu li:hover {
-  			background: #e0e0e0;
-		}
-
-
         #copyPopup {
 			position: absolute;
 			top: -50px;
@@ -874,7 +844,6 @@
         </div>
 <div id="playerContextMenu" class="context-menu">
   <ul>
-	<div data-slot="context-menu-label" class="text-muted-foreground px-2 py-1.5 text-sm font-medium data-[inset]:pl-8">Profile</div>
     <li data-action="username">📋 Copy Username</li>
     <li data-action="tiers">📋 Copy Tiers</li>
   </ul>
