@@ -91,9 +91,9 @@ function renderPlayers() {
     row.addEventListener("click", () => openPlayerModal(p));
 
     // ✅ Store player data for context menu
-    row.dataset.uuid = p.uuid;
     row.dataset.username = p.name;
     row.dataset.tiers = JSON.stringify(p.tiers);
+    row.dataset.points = p.points;
 
     container.appendChild(row);
   });
@@ -126,7 +126,6 @@ function openPlayerModal(player) {
 
   modal.style.display = "flex";
 }
-
 
 document.getElementById("closeModal").addEventListener("click", () => {
   document.getElementById("playerModal").style.display = "none";
@@ -181,26 +180,20 @@ document.getElementById("nextPageBtn").addEventListener("click", () => {
 
 showPage(0);
 
-// =======================
-// Context Menu
-// =======================
 const contextMenu = document.getElementById("playerContextMenu");
 let contextPlayer = null;
 
-// Show context menu on right-click
 document.addEventListener("contextmenu", (e) => {
   const row = e.target.closest(".player-row");
   if (row) {
     e.preventDefault();
 
-    // Get player data stored on the row
     contextPlayer = {
       name: row.dataset.username,
-      uuid: row.dataset.uuid,
-      tiers: row.dataset.tiers
+      tiers: row.dataset.tiers,
+      points: row.dataset.points
     };
 
-    // Position the menu
     contextMenu.style.top = `${e.pageY}px`;
     contextMenu.style.left = `${e.pageX}px`;
     contextMenu.style.display = "block";
@@ -209,12 +202,11 @@ document.addEventListener("contextmenu", (e) => {
   }
 });
 
-// Handle clicks in the menu
 contextMenu.addEventListener("click", (e) => {
   if (!contextPlayer) return;
   const action = e.target.dataset.action;
-  if (action === "uuid") {
-    navigator.clipboard.writeText(contextPlayer.uuid);
+  if (action === "points") {
+    navigator.clipboard.writeText(contextPlayer.points);
   } else if (action === "username") {
     navigator.clipboard.writeText(contextPlayer.name);
   } else if (action === "tiers") {
@@ -223,7 +215,6 @@ contextMenu.addEventListener("click", (e) => {
   contextMenu.style.display = "none";
 });
 
-// Hide menu on outside click or Esc
 document.addEventListener("click", () => {
   contextMenu.style.display = "none";
 });
