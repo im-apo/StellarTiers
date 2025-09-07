@@ -465,6 +465,42 @@
             font-weight: 900;
             text-transform: uppercase;
         }
+
+		/* Context Menu */
+		.context-menu {
+  			position: absolute;
+  			background: #1e1e1e;
+  			border: 1px solid #333;
+  			border-radius: 6px;
+  			padding: 6px 0;
+  			display: none;
+  			z-index: 9999;
+  			min-width: 160px;
+  			box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  			font-family: Arial, sans-serif;
+		}
+
+		.context-label {
+  			font-weight: bold;
+  			font-size: 13px;
+  			color: #aaa;
+  			padding: 6px 12px;
+  			border-bottom: 1px solid #333;
+		}
+
+		.context-item {
+  			padding: 8px 12px;
+  			font-size: 14px;
+  			color: #ddd;
+  			cursor: pointer;
+  			transition: background 0.2s;
+		}
+
+		.context-item:hover {
+  			background: #333;
+  			color: #fff;
+		}
+
 		
         .tier.lt5 { background: linear-gradient(135deg, #d97706, #b45309); color: #fff;}
 		.tier.ht5 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000;}
