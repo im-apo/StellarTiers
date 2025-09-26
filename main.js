@@ -11,8 +11,8 @@ const tierPoints = {
    HT4: 8, LT4: 6,
    RHT5: 4, RLT5: 2,
    HT5: 4, LT5: 2,
-   RHT6: 0, RLT6: 0,
-   HT6: -200,  LT6: 0
+   RHT6: -10, RLT6: -20,
+   HT6: -10,  LT6: -20
 };
 
 let players = [];
