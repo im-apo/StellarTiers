@@ -501,7 +501,9 @@
   			color: #fff;
 		}
 
-		
+
+		.tier.lt6 { background: linear-gradient(135deg, #a0522d, #7b3f00); color: #fff;}
+		.tier.ht6 { background: linear-gradient(135deg, #d2b48c, #deb887); color: #000;}
         .tier.lt5 { background: linear-gradient(135deg, #d97706, #b45309); color: #fff;}
 		.tier.ht5 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000;}
         .tier.lt4 { background: linear-gradient(135deg, #059669, #064e3b); color: #fff;}
@@ -512,10 +514,24 @@
         .tier.ht2 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #000;}
         .tier.lt1 { background: linear-gradient(135deg, #f43f5e, #be123c); color: #fff;}
         .tier.ht1 { background: linear-gradient(135deg, #ec4899, #db2777); color: #000;}
+		.tier.ht0 { background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000); color: #fff;}
+		.tier.lt0 { background: linear-gradient(135deg, #ff9aa2, #ffb347, #ffff99, #b5ead7, #aec6ff, #cba6f7, #e1b7ff, #ff9aa2); color: #000;}
+		.tier.rlt6 { background: linear-gradient(135deg, #a0522d, #7b3f00); color: #fff;}
+		.tier.rht6 { background: linear-gradient(135deg, #d2b48c, #deb887); color: #000;}
+		.tier.rlt5 { background: linear-gradient(135deg, #d97706, #b45309); color: #fff;}
+		.tier.rht5 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000;}
+        .tier.rlt4 { background: linear-gradient(135deg, #059669, #064e3b); color: #fff;}
+        .tier.rht4 { background: linear-gradient(135deg, #10b981, #059669); color: #000;}
+        .tier.rlt3 { background: linear-gradient(135deg, #2563eb, #1e3a8a); color: #fff;}
+        .tier.rht3 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #000;}
         .tier.rlt2 { background: linear-gradient(135deg, #9333ea, #581c87); color: #fff;}
         .tier.rht2 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #000;}
         .tier.rlt1 { background: linear-gradient(135deg, #f43f5e, #be123c); color: #fff;}
         .tier.rht1 { background: linear-gradient(135deg, #ec4899, #db2777); color: #000;}
+		.tier.rht0 { background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff, #ff0000); color: #fff;}
+		.tier.rlt0 { background: linear-gradient(135deg, #ff9aa2, #ffb347, #ffff99, #b5ead7, #aec6ff, #cba6f7, #e1b7ff, #ff9aa2); color: #000;}
+
+		
 		
 		.tier-info-modal {
 			background: rgba(20, 20, 20, 0.96);
@@ -1093,6 +1109,38 @@
 	<div style="text-align:center; color:#64748b; font-size:0.98em;">
       <em>Inactive players who choose to retire will be retired at their peak Tier on their profile. Peak Tiers are a good way for players to retain their points after earning a rank. Players without a peak tier will typically be prioritized in match assignment.</em>
     </div>
+  </div>
+</div>
+<div id="tierInfoModalSpare" class="modal" style="display:none;">
+  <div class="modal-content tier-info-modal">
+    <button id="closeTierInfo" class="close-btn">&times;</button>
+    <h2 class="modal-title">Tier & Rank Info</h2>
+    <div class="modal-desc">
+      Here's spare tiers and ranks Each tier grants points; your total determines your overall rank and badge!
+    </div>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+        <tr><td><span class="tier rht3">RHT3</span></td><td style="text-align:center;">20</td>
+        <tr><td><span class="tier rlt3">RLT3</span></td><td style="text-align:center;">15</td>
+        <tr><td><span class="tier rht4">RHT4</span></td><td style="text-align:center;">8</td>
+        <tr><td><span class="tier rlt4">RLT4</span></td><td style="text-align:center;">6</td>
+        <tr><td><span class="tier rht5">RHT5</span></td><td style="text-align:center;">4</td>
+        <tr><td><span class="tier rlt5">RLT5</span></td><td style="text-align:center;">2</td>
+        <tr><td><span class="tier rht0">RHT0</span></td><td style="text-align:center;">200</td>
+		<tr><td><span class="tier rlt0">RHT0</span></td><td style="text-align:center;">100</td>
+        <tr><td><span class="tier ht6">HT6</span></td><td style="text-align:center;">-1</td>
+        <tr><td><span class="tier lt6">LT6</span></td><td style="text-align:center;">-2</td>
+        <tr><td><span class="tier ht0">HT0</span></td><td style="text-align:center;">200</td>
+		<tr><td><span class="tier lt0">LT0</span></td><td style="text-align:center;">100</td>
+      </tbody>
+    </table>
   </div>
 </div>
     <script src="main.js" defer></script>
