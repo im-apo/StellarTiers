@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta property="og:title" content="Axis Team Tierlist - Competitive Minecraft Rankings">
+	<meta property="og:title" content="Axis Team Tierlist - 	Rankings">
 	<meta property="og:description" content="Interactive tierlist showcasing skilled Minecraft PvP players across Crystal, Sword, UHC, Potion, and more gamemodes. View detailed rankings and player statistics.">
 	<meta property="og:image" content="https://im-apo.github.io/stellartiers.github.io/logo.png">
 	<meta property="og:image:alt" content="Axis Team Logo - Competitive Minecraft Community">
@@ -466,37 +466,114 @@
 			transition: all 0.2s ease-in-out;
 		}
 
-        .gamemode-tiers {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
-            justify-content: center;
-        }
+.gamemode-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Increased gap for row wrappers */
+    align-items: center; /* Center the rows */
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    margin-left: -180px; /* Moved further left to accommodate labels */
+    padding-left: 20px; /* Add some padding to prevent cutoff */
+}
 
-        .gamemode-tier-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0);
-            border-radius: 12px;
-            border: 0px solid rgba(59, 130, 246, 0.2);
-        }
+.tier-row-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    justify-content: center;
+}
 
-        .gamemode-tier-item .gamemode-tier-icon {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            vertical-align: middle;
-        }
+.tier-row-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #9ca3af;
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
+}
 
-        .gamemode-tier-text {
-            font-weight: 900;
-            text-transform: uppercase;
-        }
+.tier-row {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in a single row */
+    gap: 6px;
+    align-items: center;
+    justify-content: center; /* Center the items in each row */
+    flex: 1;
+}
 
+.gamemode-tier-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px; /* Increased gap */
+    padding: 6px; /* Increased padding */
+    background: rgba(20, 20, 20, 0.6);
+    border-radius: 10px; /* Slightly larger border radius */
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    transition: all 0.2s ease;
+    min-width: 44px; /* Increased minimum width */
+    flex-shrink: 0;
+}
+
+.gamemode-tier-item:hover {
+    background: rgba(30, 30, 30, 0.8);
+    transform: translateY(-1px);
+    border-color: rgba(120, 120, 120, 0.5);
+}
+
+.gamemode-tier-icon-container {
+    width: 28px; /* Increased from 20px */
+    height: 28px; /* Increased from 20px */
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(80, 80, 80, 0.4);
+}
+
+.gamemode-tier-icon {
+    width: 20px; /* Increased from 14px */
+    height: 20px; /* Increased from 14px */
+    object-fit: contain;
+}
+
+.gamemode-tier-item .tier {
+    font-size: 0.8rem; /* Increased from 0.7rem */
+    padding: 2px 4px; /* Increased padding */
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 600; /* Made text bolder for better readability */
+}
+
+/* Adjust the main grid to accommodate the shifted tiers */
+.player-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 400px; /* Increase third column width */
+    gap: 20px; /* Reduce gap slightly */
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    margin-bottom: 8px;
+}
+
+.leaderboard-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 400px; /* Match player row */
+    gap: 20px; /* Match player row */
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #e5e5e5;
+    font-size: 16px;
+}
+	
 		/* Context Menu */
 		.context-menu {
   			position: absolute;
@@ -806,6 +883,55 @@
             background: var(--accent);
             color: white;
         }
+		.region-context-menu {
+  min-width: 180px;
+}
+
+.region-context-menu .context-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Add a visual indicator to the overall tab when region filtering is active */
+.gamemode-tab[data-gamemode="overall"].filtered {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a);
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+.gamemode-tab[data-gamemode="overall"].filtered:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
+}
+
+/* Style for rank numbers when showing true overall rank */
+.rank.true-overall {
+  color: #8b5cf6;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+}
+
+.rank.true-overall.gold {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rank.true-overall.silver {
+  background: linear-gradient(45deg, #c0c0c0, #e5e5e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rank.true-overall.bronze {
+  background: linear-gradient(45deg, #cd7f32, #daa520);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
         .modal{
             position:fixed; inset:0;
             background: rgba(0, 0, 0, 0.6);
@@ -938,15 +1064,147 @@
             margin-left: 8px !important;
             box-shadow: 0 2px 8px rgba(0,0,0,.25) !important;
         }
+		
+.region-filter-modal {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px 16px;
+  position: relative;
+  width: 280px;
+  margin: auto;
+  border: 2px solid #888; /* changed */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+}
 
-        .player-modal-name .player-region.na { background: linear-gradient(135deg,#22c55e,#16a34a) !important; }
-        .player-modal-name .player-region.eu { background: linear-gradient(135deg,#3b82f6,#1d4ed8) !important; }
-        .player-modal-name .player-region.as { background: linear-gradient(135deg,#f59e0b,#d97706) !important; }
-        .player-modal-name .player-region.sa { background: linear-gradient(135deg,#ef4444,#b91c1c) !important; }
-        .player-modal-name .player-region.me { background: linear-gradient(135deg,#8b5cf6,#6d28d9) !important; }
-        .player-modal-name .player-region.au { background: linear-gradient(135deg,#06b6d4,#0e7490) !important; }
-        .player-modal-name .player-region.af { background: linear-gradient(135deg,#f97316,#b45309) !important; }
-        .player-modal-name .player-region.unknown { background: #444 !important; }
+.close-region-filter {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-region-filter:hover {
+  color: #fff;
+}
+
+.region-filter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.region-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #333;
+}
+
+.region-checkbox-item:hover {
+  background: #333;
+  border-color: #444;
+}
+
+.region-checkbox-item input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #555;
+  border-radius: 3px;
+  background: transparent;
+  transition: all 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.region-checkbox-item input[type="checkbox"]:checked + .checkbox-custom {
+  background: #888; /* changed */
+  border-color: #888; /* changed */
+}
+
+.region-checkbox-item input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.region-name {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.region-checkbox-item input[type="checkbox"]:checked ~ .region-name {
+  color: #fff;
+}
+
+/* Update overall button styling when filtered */
+.gamemode-tab[data-gamemode="overall"].filtered {
+  background: linear-gradient(135deg, #888, #666) !important; /* changed */
+  border-color: #888 !important; /* changed */
+  color: #fff !important;
+  box-shadow: 0 0 18px rgba(136, 136, 136, 0.5) !important; /* changed */
+}
+
+.gamemode-tab[data-gamemode="overall"].filtered:hover {
+  background: linear-gradient(135deg, #666, #444) !important; /* changed */
+  box-shadow: 0 0 22px rgba(136, 136, 136, 0.7) !important; /* changed */
+}
+.player-region {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Fallback hover for any region without a custom glow */
+.player-region:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4) !important;
+  transform: scale(1.05);
+}
+
+/* Region styles with colored hover glows */
+.player-modal-name .player-region.na { background:linear-gradient(135deg,#22c55e,#16a34a) !important; }
+.player-modal-name .player-region.na:hover { box-shadow:0 0 14px rgba(34,197,94,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.eu { background:linear-gradient(135deg,#3b82f6,#1d4ed8) !important; }
+.player-modal-name .player-region.eu:hover { box-shadow:0 0 14px rgba(59,130,246,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.as { background:linear-gradient(135deg,#f59e0b,#d97706) !important; }
+.player-modal-name .player-region.as:hover { box-shadow:0 0 14px rgba(245,158,11,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.sa { background:linear-gradient(135deg,#ef4444,#b91c1c) !important; }
+.player-modal-name .player-region.sa:hover { box-shadow:0 0 14px rgba(239,68,68,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.me { background:linear-gradient(135deg,#8b5cf6,#6d28d9) !important; }
+.player-modal-name .player-region.me:hover { box-shadow:0 0 14px rgba(139,92,246,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.au { background:linear-gradient(135deg,#06b6d4,#0e7490) !important; }
+.player-modal-name .player-region.au:hover { box-shadow:0 0 14px rgba(6,182,212,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.af { background:linear-gradient(135deg,#f97316,#b45309) !important; }
+.player-modal-name .player-region.af:hover { box-shadow:0 0 14px rgba(249,115,22,0.7) !important; transform:scale(1.05); }
+
+.player-modal-name .player-region.unknown { background:#444 !important; }
+.player-modal-name .player-region.unknown:hover { box-shadow:0 0 14px rgba(255,255,255,0.4) !important; transform:scale(1.05); }
 
         /* Rank-based animated name colors */
         .rank-1-name {
@@ -1037,32 +1295,48 @@
   			gap:8px;
 		}
 
-		.player-region{
-  			display:inline-block;
-  			padding:3px 10px;
-  			border-radius:8px;
-  			font-size:12px;
-  			line-height:1;
-  			font-weight:700;
-  			letter-spacing:.4px;
-  			color:#fff !important;
-  			box-shadow:0 2px 8px rgba(0,0,0,.25);
-			
-			-webkit-text-fill-color: #fff !important;
-			text-fill-color: #fff !important;
-		}
+.player-region {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  -webkit-text-fill-color: #fff !important;
+  text-fill-color: #fff !important;
+  transition: all 0.2s ease-in-out;
+}
 
-		.player-region.na{ background:linear-gradient(135deg,#22c55e,#16a34a); } /* North America */
-		.player-region.eu{ background:linear-gradient(135deg,#3b82f6,#1d4ed8); } /* Europe */
-		.player-region.as{ background:linear-gradient(135deg,#f59e0b,#d97706); } /* Asia */
-		.player-region.sa{ background:linear-gradient(135deg,#ef4444,#b91c1c); } /* South America */
-		.player-region.me{ background:linear-gradient(135deg,#8b5cf6,#6d28d9); } /* Middle East */
-		.player-region.au{ background:linear-gradient(135deg,#06b6d4,#0e7490); } /* Australia */
-		.player-region.af{ background:linear-gradient(135deg,#f97316,#b45309); } /* Africa */
-		.player-region.unknown { background:#444; } /* Fallback */
+.player-region.na { background:linear-gradient(135deg,#22c55e,#16a34a); }
+.player-region.na:hover { box-shadow:0 0 14px rgba(34,197,94,0.7); transform:scale(1.05); }
+
+.player-region.eu { background:linear-gradient(135deg,#3b82f6,#1d4ed8); }
+.player-region.eu:hover { box-shadow:0 0 14px rgba(59,130,246,0.7); transform:scale(1.05); }
+
+.player-region.as { background:linear-gradient(135deg,#f59e0b,#d97706); }
+.player-region.as:hover { box-shadow:0 0 14px rgba(245,158,11,0.7); transform:scale(1.05); }
+
+.player-region.sa { background:linear-gradient(135deg,#ef4444,#b91c1c); }
+.player-region.sa:hover { box-shadow:0 0 14px rgba(239,68,68,0.7); transform:scale(1.05); }
+
+.player-region.me { background:linear-gradient(135deg,#8b5cf6,#6d28d9); }
+.player-region.me:hover { box-shadow:0 0 14px rgba(139,92,246,0.7); transform:scale(1.05); }
+
+.player-region.au { background:linear-gradient(135deg,#06b6d4,#0e7490); }
+.player-region.au:hover { box-shadow:0 0 14px rgba(6,182,212,0.7); transform:scale(1.05); }
+
+.player-region.af { background:linear-gradient(135deg,#f97316,#b45309); }
+.player-region.af:hover { box-shadow:0 0 14px rgba(249,115,22,0.7); transform:scale(1.05); }
+
+.player-region.unknown { background:#444; }
+.player-region.unknown:hover { box-shadow:0 0 14px rgba(255,255,255,0.4); transform:scale(1.05); }
 
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -1099,6 +1373,19 @@
   <div class="context-item" data-action="username">📋 Copy Username</div>
   <div class="context-item" data-action="tiers">📋 Copy Tiers</div>
 </div>
+
+<div id="regionContextMenu" class="context-menu region-context-menu">
+  <div class="context-label">Filter by Region</div>
+  <div class="context-item" data-region="all">🌍 All Regions</div>
+  <div class="context-item" data-region="na">🇺🇸 North America</div>
+  <div class="context-item" data-region="eu">🇪🇺 Europe</div>
+  <div class="context-item" data-region="as">🇯🇵 Asia</div>
+  <div class="context-item" data-region="sa">🇧🇷 South America</div>
+  <div class="context-item" data-region="me">🇸🇦 Middle East</div>
+  <div class="context-item" data-region="au">🇦🇺 Australia</div>
+  <div class="context-item" data-region="af">🇿🇦 Africa</div>
+</div>
+
 <div class="leaderboard">
   <div class="gamemode-switcher">
     <button id="prevPageBtn" class="arrow-btn">⟵</button>
@@ -1308,6 +1595,54 @@
     </table>
 	<div style="text-align:center; color:#64748b; font-size:0.98em;">
       <em>Inactive players who choose to retire will be retired at their peak Tier on their profile. Peak Tiers are a good way for players to retain their points after earning a rank. Players without a peak tier will typically be prioritized in match assignment.</em>
+    </div>
+  </div>
+</div>
+<div id="regionFilterModal" class="modal" style="display:none;">
+  <div class="region-filter-modal">
+    <button class="close-region-filter">&times;</button>
+    <div class="region-filter-content">
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="eu">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">EUROPE</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="as">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">ASIA</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="na">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">NORTH AMERICA</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="sa">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">SOUTH AMERICA</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="me">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">MIDDLE EAST</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="au">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">OCEANIA</span>
+      </label>
+      
+      <label class="region-checkbox-item">
+        <input type="checkbox" value="af">
+        <span class="checkbox-custom"></span>
+        <span class="region-name">AFRICA</span>
+      </label>
     </div>
   </div>
 </div>
