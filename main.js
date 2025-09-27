@@ -109,29 +109,117 @@ function renderPlayers() {
 function openPlayerModal(player) {
   const modal = document.getElementById("playerModal");
   const body = document.getElementById("modalBody");
+  const totalPoints = calculatePoints(player);
+  const badge = getBadge(totalPoints);
 
+  // Create tier icons mapping
+  const gamemodeIcons = {
+    crystal: "Crystal.svg",
+    sword: "Sword.svg",
+    uhc: "Uhc.svg", 
+    potion: "Potion.svg",
+    nethpot: "Nethpot.svg",
+    smp: "Smp.svg",
+    axe: "Axe.svg",
+    mace: "Mace.svg",
+    diasmp: "Diasmp.svg",
+    speed: "Speed.svg",
+    elytra: "Elytra.svg",
+    trident: "Trident.svg",
+    cart: "Cart.svg",
+    bed: "Bed.svg",
+    bow: "Bow.svg",
+    creeper: "Creeper.svg",
+    debuff: "DeBuff.svg",
+    diasurv: "DiaSurv.svg",
+    manhunt: "Manhunt.svg",
+    ogvanilla: "OgVanilla.svg",
+    ltm: "LTM.svg"
+  };
+
+  // Define tier hierarchy for sorting (higher tiers first)
+  // Retired tiers have same priority as normal tiers
+  const tierHierarchy = {
+    'HT0': 0, 'LT0': 1, 'RHT0': 0, 'RLT0': 1,
+    'HT1': 2, 'LT1': 3, 'RHT1': 2, 'RLT1': 3,
+    'HT2': 4, 'LT2': 5, 'RHT2': 4, 'RLT2': 5,
+    'HT3': 6, 'LT3': 7, 'RHT3': 6, 'RLT3': 7,
+    'HT4': 8, 'LT4': 9, 'RHT4': 8, 'RLT4': 9,
+    'HT5': 10, 'LT5': 11, 'RHT5': 10, 'RLT5': 11,
+    'HT6': 12, 'LT6': 13, 'RHT6': 12, 'RLT6': 13
+  };
+
+  // Sort tiers by hierarchy (highest first)
+  const sortedTiers = Object.entries(player.tiers).sort(([,tierA], [,tierB]) => {
+    const rankA = tierHierarchy[tierA] ?? 999;
+    const rankB = tierHierarchy[tierB] ?? 999;
+    return rankA - rankB;
+  });
+
+  // Check if region is a valid region code (2-3 letters) or something else
+  const validRegions = ['na', 'eu', 'as', 'sa', 'me', 'au', 'af'];
+  const isValidRegion = player.region && validRegions.includes(player.region.toLowerCase());
+  
+  // Get player's rank position (1-based)
+  const playerRank = getPlayerRank(player.name);
+  let rankClass = "";
+  if (playerRank === 1) rankClass = "rank-1-name";
+  else if (playerRank === 2) rankClass = "rank-2-name";
+  else if (playerRank === 3) rankClass = "rank-3-name";
+  
   body.innerHTML = `
-    <h2>
-      ${player.name}
-      <span class="player-region ${String(player.region || "").toLowerCase()}">
-        ${player.region}
-      </span>
-    </h2>
-    <img src="${player.avatar}" 
-         style="width:80px; border-radius:12px; margin:10px auto; display:block;">
-    <table style="width:100%">
-      <tr><th>Gamemode</th><th>Tier</th><th>Points</th></tr>
-      ${Object.entries(player.tiers).map(([gm,tier]) =>
-        `<tr>
-          <td>${gm.toUpperCase()}</td>
-          <td><span class="tier ${tier.toLowerCase()}">${tier}</span></td>
-          <td>${tierPoints[tier]}</td>
-        </tr>`
-      ).join("")}
-    </table>
+    <div class="player-modal-header">
+      <img class="player-modal-avatar" src="${player.avatar}" alt="${player.name}">
+      <h2 class="player-modal-name">
+        <span class="${rankClass}">${player.name}</span>
+        ${isValidRegion ? `<span class="player-region ${player.region.toLowerCase()}">${player.region.toUpperCase()}</span>` : ''}
+      </h2>
+      <div class="player-modal-points">
+        ${totalPoints} points
+        <span class="points-badge ${badge.class}">${badge.label}</span>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h3 class="modal-section-title">Tiers</h3>
+      <div class="tier-grid">
+        ${sortedTiers.map(([gm, tier]) => {
+          const tierClass = tier.toLowerCase();
+          const iconSrc = gamemodeIcons[gm] || "Overall.svg";
+          
+          return `
+            <div class="tier-item">
+              <div class="tier-icon-container" style="border-color: var(--${tierClass}, #666);">
+                <img class="tier-icon" src="${iconSrc}" alt="${gm}" 
+                     onerror="this.style.display='none';">
+              </div>
+              <span class="tier-label tier ${tierClass}">${tier}</span>
+              <span style="font-size: 0.7rem; color: #9ca3af;">${gm.toUpperCase()}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
   `;
 
   modal.style.display = "flex";
+}
+
+function getPlayerRank(playerName) {
+  // Create a sorted copy of players for overall ranking
+  const sortedPlayers = [...players];
+  
+  if (currentGamemode === "overall") {
+    sortedPlayers.forEach(p => p.points = calculatePoints(p));
+    sortedPlayers.sort((a,b) => b.points - a.points);
+  } else {
+    sortedPlayers.forEach(p => p.points = tierPoints[p.tiers[currentGamemode]] || 0);
+    sortedPlayers.sort((a,b) => b.points - a.points);
+  }
+  
+  // Find the player's position (1-based ranking)
+  const playerIndex = sortedPlayers.findIndex(p => p.name === playerName);
+  return playerIndex !== -1 ? playerIndex + 1 : 0;
 }
 
 document.getElementById("closeModal").addEventListener("click", () => {
