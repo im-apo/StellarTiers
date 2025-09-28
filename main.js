@@ -17,6 +17,8 @@ const tierPoints = {
 
 let players = [];
 let currentGamemode = "overall";
+let currentPage = 1;
+let playersPerPage = 50;
 
 // Multi-region filter functionality
 let selectedRegions = new Set(); // Store selected regions
@@ -68,6 +70,182 @@ function updateOverallTabAppearance() {
   });
 }
 
+function updatePaginationControls(totalPages, totalPlayers) {
+  // Remove existing pagination if it exists
+  const existingPagination = document.getElementById("pagination");
+  if (existingPagination) {
+    existingPagination.remove();
+  }
+
+  if (totalPages <= 1) return; // Don't show pagination for single page
+
+  const startRank = ((currentPage - 1) * playersPerPage) + 1;
+  const endRank = Math.min(currentPage * playersPerPage, totalPlayers);
+
+  const pagination = document.createElement("div");
+  pagination.id = "pagination";
+  pagination.style.cssText = `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(80, 80, 80, 0.3);
+  `;
+
+  const pageInfo = document.createElement("span");
+  pageInfo.style.cssText = `
+    color: #9ca3af;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 16px;
+  `;
+  pageInfo.textContent = `Showing ${startRank}-${endRank} of ${totalPlayers} players`;
+
+  const prevBtn = document.createElement("button");
+  prevBtn.textContent = "← Previous";
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.style.cssText = `
+    background: ${currentPage === 1 ? 'rgba(60, 60, 60, 0.5)' : 'rgba(30, 30, 30, 0.95)'};
+    border: 2px solid rgba(80, 80, 80, 0.6);
+    border-radius: 12px;
+    padding: 8px 16px;
+    color: ${currentPage === 1 ? '#666' : '#d1d5db'};
+    font-weight: 600;
+    cursor: ${currentPage === 1 ? 'not-allowed' : 'pointer'};
+    transition: all 0.3s ease;
+  `;
+  if (currentPage > 1) {
+    prevBtn.addEventListener("mouseover", () => {
+      prevBtn.style.background = "rgba(50, 50, 50, 0.95)";
+      prevBtn.style.borderColor = "#aaa";
+    });
+    prevBtn.addEventListener("mouseout", () => {
+      prevBtn.style.background = "rgba(30, 30, 30, 0.95)";
+      prevBtn.style.borderColor = "rgba(80, 80, 80, 0.6)";
+    });
+  }
+
+  const nextBtn = document.createElement("button");
+  nextBtn.textContent = "Next →";
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.style.cssText = `
+    background: ${currentPage === totalPages ? 'rgba(60, 60, 60, 0.5)' : 'rgba(30, 30, 30, 0.95)'};
+    border: 2px solid rgba(80, 80, 80, 0.6);
+    border-radius: 12px;
+    padding: 8px 16px;
+    color: ${currentPage === totalPages ? '#666' : '#d1d5db'};
+    font-weight: 600;
+    cursor: ${currentPage === totalPages ? 'not-allowed' : 'pointer'};
+    transition: all 0.3s ease;
+  `;
+  if (currentPage < totalPages) {
+    nextBtn.addEventListener("mouseover", () => {
+      nextBtn.style.background = "rgba(50, 50, 50, 0.95)";
+      nextBtn.style.borderColor = "#aaa";
+    });
+    nextBtn.addEventListener("mouseout", () => {
+      nextBtn.style.background = "rgba(30, 30, 30, 0.95)";
+      nextBtn.style.borderColor = "rgba(80, 80, 80, 0.6)";
+    });
+  }
+
+  // Add click handlers
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPlayers();
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPlayers();
+    }
+  });
+
+  pagination.appendChild(prevBtn);
+
+  // Add page numbers (show max 5 pages around current page)
+  const pageNumbers = document.createElement("div");
+  pageNumbers.style.cssText = `
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  `;
+
+  let startPage = Math.max(1, currentPage - 2);
+  let endPage = Math.min(totalPages, currentPage + 2);
+
+  if (startPage > 1) {
+    const firstPage = createPageButton(1);
+    pageNumbers.appendChild(firstPage);
+    if (startPage > 2) {
+      const dots = document.createElement("span");
+      dots.textContent = "...";
+      dots.style.color = "#666";
+      pageNumbers.appendChild(dots);
+    }
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.appendChild(createPageButton(i));
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) {
+      const dots = document.createElement("span");
+      dots.textContent = "...";
+      dots.style.color = "#666";
+      pageNumbers.appendChild(dots);
+    }
+    const lastPage = createPageButton(totalPages);
+    pageNumbers.appendChild(lastPage);
+  }
+
+  pagination.appendChild(pageNumbers);
+  pagination.appendChild(pageInfo);
+  pagination.appendChild(nextBtn);
+
+  document.getElementById("playerList").appendChild(pagination);
+}
+
+function createPageButton(pageNum) {
+  const btn = document.createElement("button");
+  btn.textContent = pageNum;
+  btn.style.cssText = `
+    background: ${pageNum === currentPage ? 'linear-gradient(135deg, #333, #111)' : 'rgba(30, 30, 30, 0.95)'};
+    border: 2px solid ${pageNum === currentPage ? '#ccc' : 'rgba(80, 80, 80, 0.6)'};
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: ${pageNum === currentPage ? '#fff' : '#d1d5db'};
+    font-weight: ${pageNum === currentPage ? '700' : '600'};
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 36px;
+  `;
+
+  if (pageNum !== currentPage) {
+    btn.addEventListener("mouseover", () => {
+      btn.style.background = "rgba(50, 50, 50, 0.95)";
+      btn.style.borderColor = "#aaa";
+    });
+    btn.addEventListener("mouseout", () => {
+      btn.style.background = "rgba(30, 30, 30, 0.95)";
+      btn.style.borderColor = "rgba(80, 80, 80, 0.6)";
+    });
+  }
+
+  btn.addEventListener("click", () => {
+    currentPage = pageNum;
+    renderPlayers();
+  });
+
+  return btn;
+}
+
 function renderPlayers() {
   const searchValue = document.getElementById("searchBox").value.toLowerCase();
   let filtered = players.filter(p => p.name.toLowerCase().includes(searchValue));
@@ -93,19 +271,27 @@ function renderPlayers() {
     filtered.sort((a,b) => b.points - a.points);
   }
 
+  // Calculate pagination
+  const totalPlayers = filtered.length;
+  const totalPages = Math.ceil(totalPlayers / playersPerPage);
+  const startIndex = (currentPage - 1) * playersPerPage;
+  const endIndex = startIndex + playersPerPage;
+  const playersToShow = filtered.slice(startIndex, endIndex);
+
   const container = document.getElementById("playerList");
   container.innerHTML = "";
 
   if (!filtered.length) {
     container.innerHTML = `<div class="no-results">No players found</div>`;
+    updatePaginationControls(0, 0);
     return;
   }
 
-  filtered.forEach((p, idx) => {
+  playersToShow.forEach((p, idx) => {
     const badge = getBadge(calculatePoints(p));
     
-    // Get true overall rank (across all regions) when in overall mode with region filter
-    let displayRank = idx + 1;
+    // Calculate actual rank (not just position on current page)
+    let displayRank = startIndex + idx + 1;
     if (currentGamemode === "overall" && selectedRegions.size > 0) {
       const trueRank = allPlayersRanking.findIndex(player => player.name === p.name) + 1;
       displayRank = trueRank;
@@ -247,6 +433,8 @@ function renderPlayers() {
 
     container.appendChild(row);
   });
+
+  updatePaginationControls(totalPages, totalPlayers);
 }
 
 function openPlayerModal(player) {
@@ -365,6 +553,13 @@ function getPlayerRank(playerName) {
   return playerIndex !== -1 ? playerIndex + 1 : 0;
 }
 
+function updateRegionCheckboxes() {
+  const checkboxes = document.querySelectorAll('#regionFilterModal input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = selectedRegions.has(checkbox.value);
+  });
+}
+
 document.getElementById("closeModal").addEventListener("click", () => {
   document.getElementById("playerModal").style.display = "none";
 });
@@ -376,69 +571,90 @@ document.getElementById("closeTierInfo").addEventListener("click", () => {
   document.getElementById("tierInfoModal").style.display = "none";
 });
 
-document.getElementById("searchBox").addEventListener("input", renderPlayers);
+// Page size selector
+document.addEventListener('DOMContentLoaded', () => {
+  const savedPageSize = localStorage.getItem('playersPerPage');
+  if (savedPageSize) {
+    playersPerPage = parseInt(savedPageSize);
+    const selector = document.getElementById("pageSizeSelector");
+    if (selector) {
+      selector.value = savedPageSize;
+    }
+  }
+});
+
+// Event listener for page size selector
+document.addEventListener('DOMContentLoaded', () => {
+  const selector = document.getElementById("pageSizeSelector");
+  document.addEventListener('keydown', (e) => {
+  
+  // Handle Escape key
+  document.addEventListener('keydown', (e) => {
+  // Handle Escape key
+  if (e.key === "Escape") {
+    e.preventDefault(); // Stop the event from bubbling
+    e.stopPropagation(); // Additional stop
+    
+    const contextMenu = document.getElementById("playerContextMenu");
+    const regionModal = document.getElementById("regionFilterModal");
+    const playerModal = document.getElementById("playerModal"); // Add this too
+    const tierInfoModal = document.getElementById("tierInfoModal"); // Add this too
+    
+    // Hide all modals
+    if (contextMenu && contextMenu.style.display !== "none") {
+      contextMenu.style.display = "none";
+    }
+    if (regionModal && regionModal.style.display !== "none") {
+      regionModal.style.display = "none";
+    }
+    if (playerModal && playerModal.style.display !== "none") {
+      playerModal.style.display = "none";
+    }
+    if (tierInfoModal && tierInfoModal.style.display !== "none") {
+      tierInfoModal.style.display = "none";
+    }
+    return; // Exit early after handling escape
+  }
+  
+  // Handle "/" key for search focus
+  if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.isContentEditable) {
+    if (e.key === '/') {
+      e.preventDefault();
+      const searchBox = document.getElementById('searchBox');
+      if (searchBox) {
+        searchBox.focus();
+      }
+    }
+  }
+});
+});
+  if (selector) {
+    selector.addEventListener("change", (e) => {
+      playersPerPage = parseInt(e.target.value);
+      localStorage.setItem('playersPerPage', playersPerPage.toString());
+      currentPage = 1;
+      renderPlayers();
+    });
+  }
+});
+
+// Clear the "/" from the search box if it gets typed
+document.getElementById('searchBox').addEventListener('input', (e) => {
+  if (e.target.value === '/') {
+    e.target.value = '';
+  }
+  currentPage = 1;
+  renderPlayers();
+});
 
 document.querySelectorAll(".gamemode-tab").forEach(tab => {
   tab.addEventListener("click", () => {
     document.querySelectorAll(".gamemode-tab").forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
     currentGamemode = tab.dataset.gamemode;
+    currentPage = 1;
     renderPlayers();
   });
-});
-
-// Multi-region filter functionality
-const regionModal = document.getElementById("regionFilterModal");
-
-// Show region filter modal on right-click of any Overall button
-document.addEventListener("contextmenu", (e) => {
-  const overallTab = e.target.closest('.gamemode-tab[data-gamemode="overall"]');
-  if (overallTab && currentGamemode === "overall") {
-    e.preventDefault();
-    
-    // Update checkboxes to reflect current selection
-    updateRegionCheckboxes();
-    
-    // Position and show modal
-    regionModal.style.display = "flex";
-  }
-});
-
-function updateRegionCheckboxes() {
-  const checkboxes = document.querySelectorAll('#regionFilterModal input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-    checkbox.checked = selectedRegions.has(checkbox.value);
-  });
-}
-
-// Handle region selection
-document.getElementById("regionFilterModal").addEventListener("change", (e) => {
-  if (e.target.type === "checkbox") {
-    const region = e.target.value;
-    
-    if (e.target.checked) {
-      selectedRegions.add(region);
-    } else {
-      selectedRegions.delete(region);
-    }
-    
-    // If all regions are selected, clear selection (show all)
-    const allRegions = ['na', 'eu', 'as', 'sa', 'me', 'au', 'af'];
-    if (allRegions.every(r => selectedRegions.has(r))) {
-      selectedRegions.clear();
-      updateRegionCheckboxes();
-    }
-    
-    updateOverallTabAppearance();
-    renderPlayers();
-  }
-});
-
-// Close modal when clicking outside or close button
-document.getElementById("regionFilterModal").addEventListener("click", (e) => {
-  if (e.target === regionModal || e.target.classList.contains("close-region-filter")) {
-    regionModal.style.display = "none";
-  }
 });
 
 loadPlayers();
@@ -471,6 +687,54 @@ document.getElementById("nextPageBtn").addEventListener("click", () => {
 });
 
 showPage(0);
+
+// Multi-region filter functionality
+const regionModal = document.getElementById("regionFilterModal");
+
+// Show region filter modal on right-click of any Overall button
+document.addEventListener("contextmenu", (e) => {
+  const overallTab = e.target.closest('.gamemode-tab[data-gamemode="overall"]');
+  if (overallTab && currentGamemode === "overall") {
+    e.preventDefault();
+    
+    // Update checkboxes to reflect current selection
+    updateRegionCheckboxes();
+    
+    // Position and show modal
+    regionModal.style.display = "flex";
+  }
+});
+
+// Handle region selection
+document.getElementById("regionFilterModal").addEventListener("change", (e) => {
+  if (e.target.type === "checkbox") {
+    const region = e.target.value;
+    
+    if (e.target.checked) {
+      selectedRegions.add(region);
+    } else {
+      selectedRegions.delete(region);
+    }
+    
+    // If all regions are selected, clear selection (show all)
+    const allRegions = ['na', 'eu', 'as', 'sa', 'me', 'au', 'af'];
+    if (allRegions.every(r => selectedRegions.has(r))) {
+      selectedRegions.clear();
+      updateRegionCheckboxes();
+    }
+    
+    updateOverallTabAppearance();
+    currentPage = 1;
+    renderPlayers();
+  }
+});
+
+// Close modal when clicking outside or close button
+document.getElementById("regionFilterModal").addEventListener("click", (e) => {
+  if (e.target === regionModal || e.target.classList.contains("close-region-filter")) {
+    regionModal.style.display = "none";
+  }
+});
 
 // =======================
 // Context Menu
@@ -519,11 +783,5 @@ contextMenu.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   if (!contextMenu.contains(e.target) && !regionModal.contains(e.target)) {
     contextMenu.style.display = "none";
-  }
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    contextMenu.style.display = "none";
-    regionModal.style.display = "none";
   }
 });
