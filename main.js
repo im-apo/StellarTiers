@@ -18,7 +18,7 @@ const tierPoints = {
 let players = [];
 let currentGamemode = "overall";
 let currentPage = 1;
-let playersPerPage = 25;
+let playersPerPage = 50;
 
 // Multi-region filter functionality
 let selectedRegions = new Set(); // Store selected regions
@@ -43,6 +43,9 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
   const popup = document.getElementById("copyPopup");
   popup.style.display = "block";
   setTimeout(()=> popup.style.display="none", 2000);
+});
+document.getElementById("stellarTiersBtn").addEventListener("click", () => {
+  window.location.href = "StellarPort.html";
 });
 
 function getBadge(points) {
