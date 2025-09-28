@@ -28,6 +28,10 @@ document.getElementById("discordBtn").addEventListener("click", () => {
   window.open("https://discord.gg/WYkYjEcVq3", "_blank");
 });
 
+document.getElementById("backToMainBtn").addEventListener("click", () => {
+  window.location.href = "index.html"; // or whatever your main page filename is
+});
+
 function getBadge(points) {
   if (points >= 350) return {label:"Legendary", class:"legendary"};
   if (points >= 200) return {label:"Master", class:"master"};
