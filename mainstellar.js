@@ -124,6 +124,27 @@ document.querySelectorAll(".gamemode-tab").forEach(tab => {
   });
 });
 
+// Footer scroll functionality
+function handleFooterScroll() {
+    const footer = document.getElementById('footer');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Show footer when near bottom of page (within 100px)
+    if (scrollTop + windowHeight >= documentHeight - 100) {
+        footer.classList.add('visible');
+    } else {
+        footer.classList.remove('visible');
+    }
+}
+
+// Add scroll listener
+window.addEventListener('scroll', handleFooterScroll);
+
+// Check on page load
+document.addEventListener('DOMContentLoaded', handleFooterScroll);
+
 document.getElementById("copyIpBtn").addEventListener("click", () => {
   navigator.clipboard.writeText("play.stellarsmp.fun");
   const popup = document.getElementById("copyPopup");
