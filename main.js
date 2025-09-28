@@ -18,7 +18,7 @@ const tierPoints = {
 let players = [];
 let currentGamemode = "overall";
 let currentPage = 1;
-let playersPerPage = 50;
+let playersPerPage = 25;
 
 // Multi-region filter functionality
 let selectedRegions = new Set(); // Store selected regions
