@@ -42,6 +42,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+			padding-bottom: 80px;
         }
         .header .search-box {
             margin: 24px auto 0 auto;
@@ -491,6 +492,27 @@
             .leaderboard { 
                 padding: 20px; 
             }
+			
+.footer {
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(80, 80, 80, 0.5);
+    padding: 12px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+    margin-top: 40px;
+}
+
+.footer strong {
+    color: #e5e5e5;
+    background: linear-gradient(135deg, #f5f5f5, #cfcfcf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
             
             .gamemode-tabs { 
                 gap: 8px; 
@@ -804,10 +826,9 @@
     </div>
   </div>
 </div>
-
     <script src="mainstellar.js" defer></script>
+<div class="footer" id="footer">
+    <strong>StellarTiers© ImApo 2025</strong>
+</div>
 </body>
 </html>
-
-
-
