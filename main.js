@@ -120,29 +120,34 @@ document.getElementById("stellarTiersBtn").addEventListener("click", () => {
 });
 
 function getBadge(points) {
-    if (points >= 300) return {
-        label: "Legendary",
-        class: "legendary"
-    };
-    if (points >= 200) return {
-        label: "Master",
-        class: "master"
-    };
-    if (points >= 100) return {
-        label: "Expert",
-        class: "expert"
-    };
-    if (points >= 50) return {
-        label: "Advanced",
-        class: "advanced"
-    };
-    if (points >= 20) return {
-        label: "Intermediate",
-        class: "intermediate"
-    };
+    if (points >= 300)
+        return {
+            label: "Legendary",
+            class: "legendary",
+        };
+    if (points >= 200)
+        return {
+            label: "Master",
+            class: "master",
+        };
+    if (points >= 100)
+        return {
+            label: "Expert",
+            class: "expert",
+        };
+    if (points >= 50)
+        return {
+            label: "Advanced",
+            class: "advanced",
+        };
+    if (points >= 20)
+        return {
+            label: "Intermediate",
+            class: "intermediate",
+        };
     return {
         label: "Novice",
-        class: "novice"
+        class: "novice",
     };
 }
 
@@ -565,74 +570,74 @@ function renderPlayers() {
         ];
 
         let gamemodeDisplay =
-            currentGamemode === "overall" ?
-            (() => {
-                // Separate tiers into main and sub categories
-                const playerMainTiers = [];
-                const playerSubTiers = [];
+            currentGamemode === "overall"
+                ? (() => {
+                      // Separate tiers into main and sub categories
+                      const playerMainTiers = [];
+                      const playerSubTiers = [];
 
-                // Sort main tiers in order and by tier hierarchy
-                mainTiers.forEach((gm) => {
-                    if (p.tiers[gm]) {
-                        playerMainTiers.push([gm, p.tiers[gm]]);
-                    }
-                });
+                      // Sort main tiers in order and by tier hierarchy
+                      mainTiers.forEach((gm) => {
+                          if (p.tiers[gm]) {
+                              playerMainTiers.push([gm, p.tiers[gm]]);
+                          }
+                      });
 
-                // Sort sub tiers in order and by tier hierarchy
-                subTiers.forEach((gm) => {
-                    if (p.tiers[gm]) {
-                        playerSubTiers.push([gm, p.tiers[gm]]);
-                    }
-                });
+                      // Sort sub tiers in order and by tier hierarchy
+                      subTiers.forEach((gm) => {
+                          if (p.tiers[gm]) {
+                              playerSubTiers.push([gm, p.tiers[gm]]);
+                          }
+                      });
 
-                // Sort each array by tier hierarchy
-                const sortByTierHierarchy = (a, b) => {
-                    const rankA = tierHierarchy[a[1]] ?? 999;
-                    const rankB = tierHierarchy[b[1]] ?? 999;
-                    return rankA - rankB;
-                };
+                      // Sort each array by tier hierarchy
+                      const sortByTierHierarchy = (a, b) => {
+                          const rankA = tierHierarchy[a[1]] ?? 999;
+                          const rankB = tierHierarchy[b[1]] ?? 999;
+                          return rankA - rankB;
+                      };
 
-                playerMainTiers.sort(sortByTierHierarchy);
-                playerSubTiers.sort(sortByTierHierarchy);
+                      playerMainTiers.sort(sortByTierHierarchy);
+                      playerSubTiers.sort(sortByTierHierarchy);
 
-                const createTierItem = ([gm, tier]) => {
-                    const iconSrc = gamemodeIcons[gm] || "Overall.svg";
-                    const tierClass = tier.toLowerCase();
+                      const createTierItem = ([gm, tier]) => {
+                          const iconSrc = gamemodeIcons[gm] || "Overall.svg";
+                          const tierClass = tier.toLowerCase();
 
-                    return `<div class="gamemode-tier-item">
+                          return `<div class="gamemode-tier-item">
               <div class="gamemode-tier-icon-container" style="border-color: var(--${tierClass}, #666);">
                 <img class="gamemode-tier-icon" src="${iconSrc}" alt="${gm}" 
                      onerror="this.style.display='none';">
               </div>
               <span class="tier ${tierClass}">${tier}</span>
             </div>`;
-                };
+                      };
 
-                let html = "";
+                      let html = "";
 
-                if (playerMainTiers.length > 0) {
-                    html += '<div class="tier-row-wrapper">';
-                    html +=
-                        '<span class="tier-row-label">Main Tiers:</span>';
-                    html += '<div class="tier-row">';
-                    html += playerMainTiers.map(createTierItem).join("");
-                    html += "</div>";
-                    html += "</div>";
-                }
+                      if (playerMainTiers.length > 0) {
+                          html += '<div class="tier-row-wrapper">';
+                          html +=
+                              '<span class="tier-row-label">Main Tiers:</span>';
+                          html += '<div class="tier-row">';
+                          html += playerMainTiers.map(createTierItem).join("");
+                          html += "</div>";
+                          html += "</div>";
+                      }
 
-                if (playerSubTiers.length > 0) {
-                    html += '<div class="tier-row-wrapper">';
-                    html +=
-                        '<span class="tier-row-label">SubTiers:</span>';
-                    html += '<div class="tier-row">';
-                    html += playerSubTiers.map(createTierItem).join("");
-                    html += "</div>";
-                    html += "</div>";
-                }
+                      if (playerSubTiers.length > 0) {
+                          html += '<div class="tier-row-wrapper">';
+                          html +=
+                              '<span class="tier-row-label">SubTiers:</span>';
+                          html += '<div class="tier-row">';
+                          html += playerSubTiers.map(createTierItem).join("");
+                          html += "</div>";
+                          html += "</div>";
+                      }
 
-                return html;
-            })() :
-            `<span class="tier ${p.tiers[
+                      return html;
+                  })()
+                : `<span class="tier ${p.tiers[
                       currentGamemode
                   ].toLowerCase()}">${p.tiers[currentGamemode]}</span>`;
 
@@ -643,13 +648,13 @@ function renderPlayers() {
 
         // Use true overall rank when region filtering is active
         const rankClass =
-            displayRank === 1 ?
-            "gold" :
-            displayRank === 2 ?
-            "silver" :
-            displayRank === 3 ?
-            "bronze" :
-            "";
+            displayRank === 1
+                ? "gold"
+                : displayRank === 2
+                ? "silver"
+                : displayRank === 3
+                ? "bronze"
+                : "";
 
         let placementBadge = "";
         let rankStyle = "position: relative; z-index: 2;";
