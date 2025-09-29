@@ -392,15 +392,16 @@
     }
 
     .player-row {
-      display: grid;
-      grid-template-columns: 80px 1fr 300px;
-      gap: 30px;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-      transition: all 0.3s ease;
-      border-radius: 16px;
-      margin-bottom: 8px;
-    }
+	  display: grid;
+	  grid-template-columns: 80px 1fr 300px;
+	  gap: 30px;
+	  padding: 20px 0;
+	  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+	  transition: all 0.3s ease;
+	  border-radius: 16px;
+	  margin-bottom: 8px;
+	  cursor: pointer; /* Add this line */
+	}
 
     .player-row.gamemode-view {
       grid-template-columns: 80px 1fr 150px;
@@ -1651,7 +1652,7 @@
           </svg> MC Server </button>
         <span id="copyPopup" style="display:none;"> Copied IP to clipboard! </span>
       </div>
-      <img src="logo.png" alt="Axis Team Logo" class="logo" onerror="this.style.display='none';">
+      <img src="logo.png" alt="Axis Team Logo" class="logo" onerror="this.style.display='none';" style="cursor: pointer;" id="logoBtn">
       <h1>Axis Team Tierlist</h1>
       <p>Axis Team's tierlist</p>
       <p2>Made By The One and Only ImApo</p2>
