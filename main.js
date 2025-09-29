@@ -151,6 +151,38 @@ function updatePaginationControls(totalPages, totalPlayers) {
       prevBtn.style.borderColor = "rgba(80, 80, 80, 0.6)";
     });
   }
+  
+  document.getElementById("logoBtn").addEventListener("click", () => {
+  // Reset to overall gamemode
+  currentGamemode = "overall";
+  
+  // Reset to first page of players
+  currentPage = 1;
+  
+  // Reset to first page of gamemode switcher
+  currentPageIndex = 0;
+  showPage(0);
+  
+  // Clear any region filters
+  selectedRegions.clear();
+  updateOverallTabAppearance();
+  updateRegionCheckboxes();
+  
+  // Clear search box
+  document.getElementById("searchBox").value = "";
+  
+  // Update all gamemode tabs to show overall as active
+  document.querySelectorAll(".gamemode-tab").forEach((t) => {
+    if (t.dataset.gamemode === "overall") {
+      t.classList.add("active");
+    } else {
+      t.classList.remove("active");
+    }
+  });
+  
+  // Re-render the players
+  renderPlayers();
+});
 
   const nextBtn = document.createElement("button");
   nextBtn.textContent = "Next →";
