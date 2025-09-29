@@ -244,6 +244,76 @@
       gap: 12px;
     }
 
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a 60%, #2a2a2a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading-screen::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+      opacity: 0.25;
+      z-index: -1;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 6px solid rgba(255, 255, 255, 0.1);
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      margin-top: 24px;
+      font-size: 1.4rem;
+      color: #e5e5e5;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .loading-subtext {
+      margin-top: 8px;
+      font-size: 1rem;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
     .arrow-btn {
       background: rgba(30, 30, 30, 0.95);
       border: 2px solid rgba(80, 80, 80, 0.6);
@@ -392,16 +462,17 @@
     }
 
     .player-row {
-	  display: grid;
-	  grid-template-columns: 80px 1fr 300px;
-	  gap: 30px;
-	  padding: 20px 0;
-	  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-	  transition: all 0.3s ease;
-	  border-radius: 16px;
-	  margin-bottom: 8px;
-	  cursor: pointer; /* Add this line */
-	}
+      display: grid;
+      grid-template-columns: 80px 1fr 300px;
+      gap: 30px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+      transition: all 0.3s ease;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      /* Add this line */
+    }
 
     .player-row.gamemode-view {
       grid-template-columns: 80px 1fr 150px;
@@ -1632,6 +1703,12 @@
 </head>
 
 <body>
+  <div class="loading-screen" id="loadingScreen">
+    <img src="logo.png" alt="Axis Team Logo" class="logo" style="margin-bottom: 24px;" onerror="this.style.display='none';">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Axis Team Tierlist</div>
+    <div class="loading-subtext" id="loadingSubtext">Please wait...</div>
+  </div>
   <div class="container">
     <div class="header">
       <div class="action-buttons">
