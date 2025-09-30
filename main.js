@@ -86,7 +86,7 @@ async function loadPlayers() {
         console.error("Failed to load players:", error);
         if (loadingSubtext) {
             loadingSubtext.textContent =
-                "Connection failed. Please check your internet or if the Discord bot is online.";
+                "Connection failed. Please check your internet connection.";
             loadingSubtext.style.color = "#ef4444";
         }
 
@@ -116,7 +116,7 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
     setTimeout(() => (popup.style.display = "none"), 2000);
 });
 document.getElementById("stellarTiersBtn").addEventListener("click", () => {
-    window.location.href = "StellarPort.html";
+    window.location.href = "StellarTiers/";
 });
 
 function getBadge(points) {
