@@ -1758,6 +1758,17 @@
             border: 1px solid #333;
         }
 
+        /* Hide region label by default in tier-column players */
+        .tier-column-player .player-region {
+            display: none;
+            margin-left: 8px;
+        }
+
+        /* Show on hover */
+        .tier-column-player:hover .player-region {
+            display: inline-block;
+        }
+
         .close-btn {
             position: absolute;
             top: 16px;
