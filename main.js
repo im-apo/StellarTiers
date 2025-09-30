@@ -533,10 +533,17 @@ function renderTierColumns(filteredPlayers, container) {
                 player.name
             }" class="player-avatar-small" onerror="this.style.display='none';">
                 <div class="tier-column-player-info">
-                    <span class="tier-column-player-name ${
-                        isHighTier ? "high-tier" : "low-tier"
-                    }">${player.name}</span>
-                </div>
+    <span class="tier-column-player-name ${
+        isHighTier ? "high-tier" : "low-tier"
+    }">
+        ${player.name}
+        <span class="player-region ${
+            player.region ? player.region.toLowerCase() : "unknown"
+        }">
+            ${player.region ? player.region.toUpperCase() : "UNKNOWN"}
+        </span>
+    </span>
+</div>
                 <div class="tier-column-player-icons">
                     ${tierIndicatorHTML}
                     ${htltIndicatorHTML}
