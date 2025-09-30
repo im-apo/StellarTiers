@@ -604,7 +604,7 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
 });
 
 document.getElementById("backToMainBtn").addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "";
 });
 
 document.getElementById("discordBtn").addEventListener("click", () => {
@@ -758,3 +758,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.loadStartTime = Date.now();
     loadPlayers();
 });
+
