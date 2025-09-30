@@ -428,105 +428,130 @@ function createPageButton(pageNum) {
 function renderTierColumns(filteredPlayers, container) {
     // Group players by tier
     const tierGroups = {
-        'Tier 1': [],
-        'Tier 2': [],
-        'Tier 3': [],
-        'Tier 4': [],
-        'Tier 5': []
+        "Tier 1": [],
+        "Tier 2": [],
+        "Tier 3": [],
+        "Tier 4": [],
+        "Tier 5": [],
     };
 
     const tierMapping = {
-        'HT1': 'Tier 1', 'LT1': 'Tier 1',
-        'RHT1': 'Tier 1', 'RLT1': 'Tier 1',
-        'HT2': 'Tier 2', 'LT2': 'Tier 2',
-        'RHT2': 'Tier 2', 'RLT2': 'Tier 2',
-        'HT3': 'Tier 3', 'LT3': 'Tier 3',
-        'RHT3': 'Tier 3', 'RLT3': 'Tier 3',
-        'HT4': 'Tier 4', 'LT4': 'Tier 4',
-        'RHT4': 'Tier 4', 'RLT4': 'Tier 4',
-        'HT5': 'Tier 5', 'LT5': 'Tier 5',
-        'RHT5': 'Tier 5', 'RLT5': 'Tier 5'
+        HT1: "Tier 1",
+        LT1: "Tier 1",
+        RHT1: "Tier 1",
+        RLT1: "Tier 1",
+        HT2: "Tier 2",
+        LT2: "Tier 2",
+        RHT2: "Tier 2",
+        RLT2: "Tier 2",
+        HT3: "Tier 3",
+        LT3: "Tier 3",
+        RHT3: "Tier 3",
+        RLT3: "Tier 3",
+        HT4: "Tier 4",
+        LT4: "Tier 4",
+        RHT4: "Tier 4",
+        RLT4: "Tier 4",
+        HT5: "Tier 5",
+        LT5: "Tier 5",
+        RHT5: "Tier 5",
+        RLT5: "Tier 5",
     };
 
     // Tier icons mapping (Tier 4 and 5 don't have icons)
     const tierIcons = {
-        'Tier 1': 'tier_1.svg',
-        'Tier 2': 'tier_2.svg',
-        'Tier 3': 'tier_3.svg',
-        'Tier 4': null,
-        'Tier 5': null
+        "Tier 1": "tier_1.svg",
+        "Tier 2": "tier_2.svg",
+        "Tier 3": "tier_3.svg",
+        "Tier 4": null,
+        "Tier 5": null,
     };
 
-    filteredPlayers.forEach(player => {
-        const tierCode = player.tiers[currentGamemode];
+    // Populate groups
+    filteredPlayers.forEach((player) => {
+        const tierCode = player.tiers && player.tiers[currentGamemode];
         const tierGroup = tierMapping[tierCode];
         if (tierGroup) {
-            // Store the tier code with the player for later use
             player.currentTierCode = tierCode;
             tierGroups[tierGroup].push(player);
         }
     });
 
     // Create columns container
-    const columnsContainer = document.createElement('div');
-    columnsContainer.className = 'tier-columns-container';
+    const columnsContainer = document.createElement("div");
+    columnsContainer.className = "tier-columns-container";
 
     // Create a column for each tier that has players
     Object.entries(tierGroups).forEach(([tierName, players], index) => {
-        if (players.length === 0) return;
+        if (!players || players.length === 0) return;
 
-        const column = document.createElement('div');
-        column.className = 'tier-column';
+        const column = document.createElement("div");
+        column.className = "tier-column";
 
-        const header = document.createElement('div');
+        const header = document.createElement("div");
         header.className = `tier-column-header tier-${index + 1}`;
-        
-        // Add tier icon if it exists
+
         const tierIcon = tierIcons[tierName];
         if (tierIcon) {
             header.innerHTML = `<img src="${tierIcon}" alt="${tierName}" onerror="this.style.display='none';"> ${tierName}`;
         } else {
-            header.innerHTML = tierName;
+            header.textContent = tierName;
         }
-        
+
         column.appendChild(header);
 
-        players.forEach(player => {
-            const tierCode = player.currentTierCode;
-            const isHighTier = tierCode.includes('HT') || tierCode.startsWith('HT');
-            const isRetired = tierCode.startsWith('R');
-            
-            const playerDiv = document.createElement('div');
-            playerDiv.className = 'tier-column-player';
-            
-            // Determine tier indicator icon
-            let tierIndicatorHTML = '';
-            if (isRetired) {
-                tierIndicatorHTML = '<img src="icons/retired_icon.svg" class="retired-indicator-icon" alt="Retired" onerror="this.style.display=\'none\';">';
-            }
-            
-            let htltIndicatorHTML = '';
+        players.forEach((player) => {
+            const tierCode = player.currentTierCode || "";
+            const isHighTier = /HT/.test(tierCode); // HT or RHT
+            const isRetired = /^R/.test(tierCode); // starts with R
+
+            const playerDiv = document.createElement("div");
+
+            // keep base class so shared styles still apply, and add modifier classes
+            playerDiv.classList.add("tier-column-player");
             if (isHighTier) {
-                htltIndicatorHTML = '<img src="icons/ht_icon.svg" class="tier-indicator-icon" alt="HT" onerror="this.style.display=\'none\';">';
+                playerDiv.classList.add("tier-column-player-high");
             } else {
-                htltIndicatorHTML = '<img src="icons/lt_icon.svg" class="tier-indicator-icon" alt="LT" onerror="this.style.display=\'none\';">';
+                playerDiv.classList.add("tier-column-player-low");
             }
-            
+            if (isRetired) {
+                playerDiv.classList.add("tier-column-player-retired");
+            }
+
+            // tier/retired icons
+            const tierIndicatorHTML = isRetired
+                ? `<img src="icons/retired_icon.svg" class="retired-indicator-icon" alt="Retired" onerror="this.style.display='none';">`
+                : "";
+
+            const htltIndicatorHTML = isHighTier
+                ? `<img src="icons/ht_icon.svg" class="tier-indicator-icon" alt="HT" onerror="this.style.display='none';">`
+                : `<img src="icons/lt_icon.svg" class="tier-indicator-icon" alt="LT" onerror="this.style.display='none';">`;
+
+            // separated layout: avatar | info (flex:1) | icons
             playerDiv.innerHTML = `
-                <img src="${player.avatar}" alt="${player.name}" class="player-avatar-small">
+                <img src="${player.avatar}" alt="${
+                player.name
+            }" class="player-avatar-small" onerror="this.style.display='none';">
                 <div class="tier-column-player-info">
-                    <span class="tier-column-player-name ${isHighTier ? 'high-tier' : 'low-tier'}">${player.name}</span>
+                    <span class="tier-column-player-name ${
+                        isHighTier ? "high-tier" : "low-tier"
+                    }">${player.name}</span>
+                </div>
+                <div class="tier-column-player-icons">
                     ${tierIndicatorHTML}
                     ${htltIndicatorHTML}
                 </div>
             `;
-            playerDiv.addEventListener('click', () => openPlayerModal(player));
+
+            playerDiv.addEventListener("click", () => openPlayerModal(player));
             column.appendChild(playerDiv);
         });
 
         columnsContainer.appendChild(column);
     });
 
+    // clear container and append
+    container.innerHTML = "";
     container.appendChild(columnsContainer);
 }
 
