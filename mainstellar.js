@@ -758,5 +758,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.loadStartTime = Date.now();
     loadPlayers();
 });
-
-
