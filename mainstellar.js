@@ -604,7 +604,7 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
 });
 
 document.getElementById("backToMainBtn").addEventListener("click", () => {
-    window.location.href = "";
+    window.location.href = "https://im-apo.github.io/stellartiers.github.io/";
 });
 
 document.getElementById("discordBtn").addEventListener("click", () => {
@@ -758,4 +758,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.loadStartTime = Date.now();
     loadPlayers();
 });
+
 
