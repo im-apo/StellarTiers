@@ -554,7 +554,6 @@ function renderTierColumns(filteredPlayers, container) {
     container.innerHTML = "";
     container.appendChild(columnsContainer);
 }
-
 function renderPlayers() {
     const searchValue = document
         .getElementById("searchBox")
@@ -562,6 +561,22 @@ function renderPlayers() {
     let filtered = players.filter((p) =>
         p.name.toLowerCase().includes(searchValue)
     );
+
+    // Special case: LTM gamemode shows announcement instead of leaderboard
+    if (currentGamemode === "ltm") {
+        const container = document.getElementById("playerList");
+        container.innerHTML = `
+          				<div id="ltmAnnouncement" class="ltm-announcement">
+  <h1>⚒️ Limited-Time Modes are coming soon!</h1>
+  <p>
+    We're working on implementing LTMs, which will include
+    <strong>custom limited-time kits</strong> for future minecraft updates and special servers – however,
+    a few other things will take priority :)
+  </p>
+</div>
+        `;
+        return;
+    }
 
     // Calculate points and create complete ranking first (for true rank reference)
     if (currentGamemode === "overall") {
