@@ -86,7 +86,7 @@ async function loadPlayers() {
         console.error("Failed to load players:", error);
         if (loadingSubtext) {
             loadingSubtext.textContent =
-                "Connection failed. Please check your internet connection.";
+                "Connection failed. Please check your internet connection and if the bot is online.";
             loadingSubtext.style.color = "#ef4444";
         }
 
