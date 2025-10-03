@@ -38,102 +38,102 @@ let playersPerPage = 50;
 const kitInfo = {
     crystal: {
         title: "Crystal PvP Kit",
-        description: "Crystal PvP involves using end crystals as explosive weapons. Players need to master crystal placement timing, anchor usage, defensive techniques, and quick switching between offense and defense.",
+        description: "Advanced end crystal combat loadout with heavy emphasis on explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. The multiple diamond and obsidian blocks enable rapid crystal placement and defensive structures. Purple shulker boxes provide portable storage for extended engagements.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Crystal.png"
     },
     smp: {
         title: "SMP Kit",
-        description: "Standard SMP combat with full diamond/netherite gear. Focus on vanilla mechanics, resource management, and adaptable fighting styles.",
+        description: "Standard survival multiplayer combat loadout with balanced resources. Full netherite protection with comprehensive potion support including healing, speed, and combat buffs. Purple shulker box for storage.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Smp.png"
     },
     diasmp: {
         title: "Diamond SMP Kit",
-        description: "Diamond-tier SMP combat. Emphasis on pre-netherite gameplay mechanics and traditional minecraft survival combat.",
+        description: "Traditional diamond-tier SMP combat with balanced approach. Full diamond armor with extensive golden apple reserves and varied potions for adaptable fighting.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Diasmp.png"
     },
     sword: {
         title: "Sword PvP Kit",
-        description: "Traditional sword combat focusing on combos, strafing, W-tapping, critical hits, and precise movement control.",
+        description: "Pure sword combat minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Sword.png"
     },
     axe: {
         title: "Axe PvP Kit",
-        description: "Axe-focused combat utilizing higher damage output, shield breaking mechanics, and timing-based attacks with cooldowns.",
+        description: "Axe-focused combat with emphasis on timing and high damage output. Minimal loadout designed for shield-breaking mechanics and cooldown-based attacks.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Axe.png"
     },
     uhc: {
         title: "UHC Kit",
-        description: "Ultra Hardcore mode with no natural regeneration. Strategic resource management, golden apple usage, and cautious positioning are essential.",
+        description: "Ultra Hardcore optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Uhc.png"
     },
     potion: {
         title: "Potion PvP Kit",
-        description: "Fast-paced combat with splash potions. Requires quick reflexes, potion management, debuff application, and rapid inventory control.",
+        description: "High-intensity potion warfare loadout with extensive splash potion arsenal. Features multiple types of instant damage, poison, and debuff potions for aggressive play, alongside healing and regeneration options. Golden carrots provide sustained saturation.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Potion.png"
     },
     nethpot: {
         title: "Netherite Potion Kit",
-        description: "Advanced potion PvP with netherite armor. Combines the speed of potion combat with increased durability and knockback resistance.",
+        description: "Enhanced potion combat with full netherite protection. Combines the speed of potion PvP with superior armor durability and knockback resistance. Heavy focus on golden apples and fish for sustained healing between potion exchanges.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Nethpot.png"
     },
     mace: {
         title: "Mace Kit",
-        description: "Mace-based combat utilizing fall damage mechanics, vertical mobility, and devastating smash attacks from height.",
+        description: "Vertical combat specialist kit built around the mace's fall damage mechanics introduced in 1.21. Features mace as primary weapon with golden apples for survivability. Potions provide mobility buffs and combat advantages for devastating smash attacks from height.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Mace.png"
     },
     speed: {
         title: "Speed PvP Kit",
-        description: "High-velocity combat with speed effects. Requires exceptional movement prediction, tracking fast targets, and maintaining accuracy at high speeds.",
+        description: "High-velocity combat kit dominated by splash potions for sustained speed effects. Minimal equipment to maximize movement speed and agility during combat.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Speed.png"
     },
     elytra: {
         title: "Elytra Kit",
-        description: "Aerial combat using elytra flight mechanics. Master firework propulsion, aerial maneuvers, and mid-air combat techniques.",
+        description: "Aerial combat specialist with focus on elytra flight mechanics. Multiple milk buckets for clearing negative effects mid-flight, alongside food, potions, and honey for landing safety.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Elytra.png"
     },
     trident: {
         title: "Trident Kit",
-        description: "Trident-focused combat with riptide and loyalty mechanics. Combines ranged attacks with mobility and strategic positioning.",
+        description: "Minimalist trident-focused combat setup emphasizing aquatic mobility and ranged attacks. Clean loadout designed for riptide propulsion and loyalty mechanics with room for tactical flexibility.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Trident.png"
     },
     cart: {
         title: "Minecart Kit",
-        description: "Minecart-based combat utilizing rails, momentum, and vehicle mechanics for unique movement-based fighting strategies.",
+        description: "Minecart-based combat utilizing rails, momentum, and vehicle mechanics for unique movement-based fighting strategies.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Cart.png"
     },
     bed: {
         title: "Bed Kit",
-        description: "Bed combat focusing on bed defense, TNT jumping, block placement speed, and resource management across multiple islands.",
+        description: "Bedwars-style combat setup with building materials and utility items. Features swords, bows, and tools for rapid base construction and destruction. Includes TNT, beds, and various blocks for tactical gameplay.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Bed.png"
     },
     bow: {
         title: "Bow Kit",
-        description: "Archery-focused combat. Master projectile prediction, strafing while shooting, quick-scoping, and maintaining distance control.",
+        description: "Archery-focused minimalist kit emphasizing ranged superiority. Features multiple bows and arrows for sustained ranged pressure with basic melee backup.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Bow.png"
     },
     creeper: {
         title: "Creeper Kit",
-        description: "Explosive combat utilizing creeper mechanics. Strategic positioning, explosion timing, and blast protection management.",
+        description: "Explosive-themed combat with milk buckets for clearing debuffs and golden apples for survival. Includes tools and materials for tactical positioning around explosion mechanics.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Creeper.png"
     },
     debuff: {
         title: "Debuff Kit",
-        description: "Status effect warfare using negative potions. Apply debuffs while maintaining your own buffs for strategic advantage.",
+        description: "Status effect warfare specialist with heavy emphasis on negative splash potions. Arsenal designed to weaken opponents while maintaining personal advantages through strategic debuff application.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/DeBuff.png"
     },
     diasurv: {
         title: "Diamond Survival Kit",
-        description: "Diamond-tier survival combat with emphasis on resource gathering, crafting mid-fight, and adapting to survival scenarios.",
+        description: "Diamond-tier crystal PvP combat with end crystal explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. Diamond armor provides solid protection while maintaining the core crystal combat mechanics with diamond and obsidian blocks for rapid placement.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/DiaSurv.png"
     },
     manhunt: {
         title: "Manhunt Kit",
-        description: "Asymmetric PvP inspired by manhunt gameplay. Combines speedrunning techniques with combat under pressure.",
+        description: "Diverse survival combat kit mirroring speedrunning scenarios. Includes crafting materials, tools for rapid resource gathering, and combat essentials for fighting while on the move. Features water buckets, beds for respawn setting, and golden apples for clutch healing.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Manhunt.png"
     },
     ogvanilla: {
         title: "OG Vanilla Kit",
-        description: "Classic vanilla Minecraft combat mechanics from older versions. No modern combat updates, focusing on traditional techniques.",
+        description: "Classic vanilla Minecraft combat with traditional techniques and straightforward gameplay. Focuses on fundamental combat skills without specialized mechanics or modern additions.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/OgVanilla.png"
     }
 };
