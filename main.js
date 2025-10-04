@@ -66,6 +66,11 @@ const kitInfo = {
         description: "Ultra Hardcore optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Uhc.png"
     },
+	nethuhc: {
+        title: "Netherite UHC Kit",
+        description: "Ultra Hardcore Netherite optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/NethUhc.png"
+    },
     potion: {
         title: "Potion PvP Kit",
         description: "High-intensity potion warfare loadout with extensive splash potion arsenal. Features multiple types of instant damage, poison, and debuff potions for aggressive play, alongside healing and regeneration options. Golden carrots provide sustained saturation.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
@@ -75,6 +80,11 @@ const kitInfo = {
         title: "Netherite Potion Kit",
         description: "Enhanced potion combat with full netherite protection. Combines the speed of potion PvP with superior armor durability and knockback resistance. Heavy focus on golden apples and fish for sustained healing between potion exchanges.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
         image: "assets/kits/Nethpot.png"
+    },
+	nethsword: {
+        title: "Netherite Sword Kit",
+        description: "Pure sword combat (But Netherite!) minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly! The Official Neth Sword Tierlist Discord is linked here: https://discord.gg/YF9ScxHvEZ",
+        image: "assets/kits/NethSword.png"
     },
     mace: {
         title: "Mace Kit",
@@ -790,6 +800,7 @@ function renderPlayers() {
             uhc: "assets/gamemode-icons/Uhc.svg",
             potion: "assets/gamemode-icons/Potion.svg",
             nethpot: "assets/gamemode-icons/Nethpot.svg",
+			nethsword: "assets/gamemode-icons/NethSword.svg",
             smp: "assets/gamemode-icons/Smp.svg",
             axe: "assets/gamemode-icons/Axe.svg",
             mace: "assets/gamemode-icons/Mace.svg",
@@ -805,6 +816,7 @@ function renderPlayers() {
             diasurv: "assets/gamemode-icons/DiaSurv.svg",
             manhunt: "assets/gamemode-icons/Manhunt.svg",
             ogvanilla: "assets/gamemode-icons/OgVanilla.svg",
+			nethuhc: "assets/gamemode-icons/NethUhc.svg",
             ltm: "assets/gamemode-icons/LTM.svg",
         };
 
@@ -855,6 +867,7 @@ function renderPlayers() {
         const subTiers = [
             "speed",
             "elytra",
+			"nethsword",
             "trident",
             "cart",
             "bed",
@@ -864,72 +877,94 @@ function renderPlayers() {
             "diasurv",
             "manhunt",
             "ogvanilla",
+        ];
+		
+		const limitedTiers = [
+            "nethuhc",
             "ltm",
         ];
 
         let gamemodeDisplay = (() => {
-            // Separate tiers into main and sub categories
-            const playerMainTiers = [];
-            const playerSubTiers = [];
+    // Separate tiers into main, sub, and limited categories
+    const playerMainTiers = [];
+    const playerSubTiers = [];
+    const playerLimitedTiers = [];
 
-            // Sort main tiers in order and by tier hierarchy
-            mainTiers.forEach((gm) => {
-                if (p.tiers[gm]) {
-                    playerMainTiers.push([gm, p.tiers[gm]]);
-                }
-            });
+    // Sort main tiers in order and by tier hierarchy
+    mainTiers.forEach((gm) => {
+        if (p.tiers[gm]) {
+            playerMainTiers.push([gm, p.tiers[gm]]);
+        }
+    });
 
-            // Sort sub tiers in order and by tier hierarchy
-            subTiers.forEach((gm) => {
-                if (p.tiers[gm]) {
-                    playerSubTiers.push([gm, p.tiers[gm]]);
-                }
-            });
+    // Sort sub tiers in order and by tier hierarchy
+    subTiers.forEach((gm) => {
+        if (p.tiers[gm]) {
+            playerSubTiers.push([gm, p.tiers[gm]]);
+        }
+    });
 
-            // Sort each array by tier hierarchy
-            const sortByTierHierarchy = (a, b) => {
-                const rankA = tierHierarchy[a[1]] ?? 999;
-                const rankB = tierHierarchy[b[1]] ?? 999;
-                return rankA - rankB;
-            };
+    // Sort limited tiers in order and by tier hierarchy
+    limitedTiers.forEach((gm) => {
+        if (p.tiers[gm]) {
+            playerLimitedTiers.push([gm, p.tiers[gm]]);
+        }
+    });
 
-            playerMainTiers.sort(sortByTierHierarchy);
-            playerSubTiers.sort(sortByTierHierarchy);
+    // Sort each array by tier hierarchy
+    const sortByTierHierarchy = (a, b) => {
+        const rankA = tierHierarchy[a[1]] ?? 999;
+        const rankB = tierHierarchy[b[1]] ?? 999;
+        return rankA - rankB;
+    };
 
-            const createTierItem = ([gm, tier]) => {
-                const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
-                const tierClass = tier.toLowerCase();
+    playerMainTiers.sort(sortByTierHierarchy);
+    playerSubTiers.sort(sortByTierHierarchy);
+    playerLimitedTiers.sort(sortByTierHierarchy);
 
-                return `<div class="gamemode-tier-item">
+    const createTierItem = ([gm, tier]) => {
+        const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+        const tierClass = tier.toLowerCase();
+
+        return `<div class="gamemode-tier-item">
           <div class="gamemode-tier-icon-container" style="border-color: var(--${tierClass}, #666);">
             <img class="gamemode-tier-icon" src="${iconSrc}" alt="${gm}" 
                  onerror="this.style.display='none';">
           </div>
           <span class="tier ${tierClass}">${tier}</span>
         </div>`;
-            };
+    };
 
-            let html = "";
+    let html = "";
 
-            if (playerMainTiers.length > 0) {
-                html += '<div class="tier-row-wrapper">';
-                html += '<span class="tier-row-label">Main Tiers:</span>';
-                html += '<div class="tier-row">';
-                html += playerMainTiers.map(createTierItem).join("");
-                html += "</div>";
-                html += "</div>";
-            }
+    if (playerMainTiers.length > 0) {
+        html += '<div class="tier-row-wrapper">';
+        html += '<span class="tier-row-label">Main Tiers:</span>';
+        html += '<div class="tier-row">';
+        html += playerMainTiers.map(createTierItem).join("");
+        html += "</div>";
+        html += "</div>";
+    }
 
-            if (playerSubTiers.length > 0) {
-                html += '<div class="tier-row-wrapper">';
-                html += '<span class="tier-row-label">SubTiers:</span>';
-                html += '<div class="tier-row">';
-                html += playerSubTiers.map(createTierItem).join("");
-                html += "</div>";
-                html += "</div>";
-            }
+    if (playerSubTiers.length > 0) {
+        html += '<div class="tier-row-wrapper">';
+        html += '<span class="tier-row-label">SubTiers:</span>';
+        html += '<div class="tier-row">';
+        html += playerSubTiers.map(createTierItem).join("");
+        html += "</div>";
+        html += "</div>";
+    }
 
-            return html;
+    if (playerLimitedTiers.length > 0) {
+        html += '<div class="tier-row-wrapper">';
+        html += '<span class="tier-row-label">Limited Tiers:</span>';
+        html += '<div class="tier-row">';
+        html += playerLimitedTiers.map(createTierItem).join("");
+        html += "</div>";
+        html += "</div>";
+    }
+
+    return html;
         })();
 
         const row = document.createElement("div");
@@ -1011,6 +1046,7 @@ function openPlayerModal(player) {
         uhc: "assets/gamemode-icons/Uhc.svg",
         potion: "assets/gamemode-icons/Potion.svg",
         nethpot: "assets/gamemode-icons/Nethpot.svg",
+		nethsword: "assets/gamemode-icons/NethSword.svg",
         smp: "assets/gamemode-icons/Smp.svg",
         axe: "assets/gamemode-icons/Axe.svg",
         mace: "assets/gamemode-icons/Mace.svg",
@@ -1027,6 +1063,7 @@ function openPlayerModal(player) {
         manhunt: "assets/gamemode-icons/Manhunt.svg",
         ogvanilla: "assets/gamemode-icons/OgVanilla.svg",
         ltm: "assets/gamemode-icons/LTM.svg",
+		nethuhc: "assets/gamemode-icons/NethUhc.svg",
     };
 
     // Define tier hierarchy for sorting (higher tiers first)
