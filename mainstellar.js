@@ -366,7 +366,9 @@ function renderPlayers() {
                       playerTiers.sort(sortByTierHierarchy);
 
                       const createTierItem = ([gm, tier]) => {
-                          const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+                          const iconSrc =
+                              gamemodeIcons[gm] ||
+                              "assets/gamemode-icons/Overall.svg";
                           const tierClass = tier.toLowerCase();
 
                           return `<div class="gamemode-tier-item">
@@ -575,7 +577,8 @@ function openPlayerModal(player) {
       ${sortedTiers
           .map(([gm, tier]) => {
               const tierClass = tier.toLowerCase();
-              const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+              const iconSrc =
+                  gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
 
               return `
             <div class="tier-item">
@@ -605,6 +608,9 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
 
 document.getElementById("backToMainBtn").addEventListener("click", () => {
     window.location.href = "https://im-apo.github.io/StellarTiers/";
+});
+document.getElementById("extiersBtn").addEventListener("click", () => {
+    window.location.href = "https://extiers.com/ranking/overall";
 });
 
 document.getElementById("discordBtn").addEventListener("click", () => {
@@ -758,4 +764,3 @@ document.addEventListener("DOMContentLoaded", () => {
     window.loadStartTime = Date.now();
     loadPlayers();
 });
-
