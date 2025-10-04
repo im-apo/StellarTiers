@@ -242,6 +242,9 @@ document.getElementById("copyIpBtn").addEventListener("click", () => {
 document.getElementById("stellarTiersBtn").addEventListener("click", () => {
     window.location.href = "StellarTiers/";
 });
+document.getElementById("extiersBtn").addEventListener("click", () => {
+    window.location.href = "https://extiers.com/ranking/overall";
+});
 
 function getBadge(points) {
     if (points >= 300)
