@@ -381,7 +381,7 @@ function renderPlayers() {
                       if (playerTiers.length > 0) {
                           html += '<div class="tier-row-wrapper">';
                           html +=
-                              '<span class="tier-row-label">Main Tiers:</span>';
+                              '<span class="tier-row-label"></span>';
                           html += '<div class="tier-row">';
                           html += playerTiers.map(createTierItem).join("");
                           html += "</div>";
