@@ -38,123 +38,145 @@ let playersPerPage = 50;
 const kitInfo = {
     crystal: {
         title: "Crystal PvP Kit",
-        description: "Advanced end crystal combat loadout with heavy emphasis on explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. The multiple diamond and obsidian blocks enable rapid crystal placement and defensive structures. Purple shulker boxes provide portable storage for extended engagements.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Crystal.png"
+        description:
+            "Advanced end crystal combat loadout with heavy emphasis on explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. The multiple diamond and obsidian blocks enable rapid crystal placement and defensive structures. Purple shulker boxes provide portable storage for extended engagements.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Crystal.png",
     },
     smp: {
         title: "SMP Kit",
-        description: "Standard survival multiplayer combat loadout with balanced resources. Full netherite protection with comprehensive potion support including healing, speed, and combat buffs. Purple shulker box for storage.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Smp.png"
+        description:
+            "Standard survival multiplayer combat loadout with balanced resources. Full netherite protection with comprehensive potion support including healing, speed, and combat buffs. Purple shulker box for storage.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Smp.png",
     },
     diasmp: {
         title: "Diamond SMP Kit",
-        description: "Traditional diamond-tier SMP combat with balanced approach. Full diamond armor with extensive golden apple reserves and varied potions for adaptable fighting.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Diasmp.png"
+        description:
+            "Traditional diamond-tier SMP combat with balanced approach. Full diamond armor with extensive golden apple reserves and varied potions for adaptable fighting.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Diasmp.png",
     },
     sword: {
         title: "Sword PvP Kit",
-        description: "Pure sword combat minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Sword.png"
+        description:
+            "Pure sword combat minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Sword.png",
     },
     axe: {
         title: "Axe PvP Kit",
-        description: "Axe-focused combat with emphasis on timing and high damage output. Minimal loadout designed for shield-breaking mechanics and cooldown-based attacks.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Axe.png"
+        description:
+            "Axe-focused combat with emphasis on timing and high damage output. Minimal loadout designed for shield-breaking mechanics and cooldown-based attacks.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Axe.png",
     },
     uhc: {
         title: "UHC Kit",
-        description: "Ultra Hardcore optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Uhc.png"
+        description:
+            "Ultra Hardcore optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Uhc.png",
     },
-	nethuhc: {
+    nethuhc: {
         title: "Netherite UHC Kit",
-        description: "Ultra Hardcore Netherite optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/NethUhc.png"
+        description:
+            "Ultra Hardcore Netherite optimized loadout emphasizing careful resource management. Golden apples are critical since natural regeneration is disabled. Balanced combat tools with strategic potion selection.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/NethUhc.png",
     },
     potion: {
         title: "Potion PvP Kit",
-        description: "High-intensity potion warfare loadout with extensive splash potion arsenal. Features multiple types of instant damage, poison, and debuff potions for aggressive play, alongside healing and regeneration options. Golden carrots provide sustained saturation.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Potion.png"
+        description:
+            "High-intensity potion warfare loadout with extensive splash potion arsenal. Features multiple types of instant damage, poison, and debuff potions for aggressive play, alongside healing and regeneration options. Golden carrots provide sustained saturation.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Potion.png",
     },
     nethpot: {
         title: "Netherite Potion Kit",
-        description: "Enhanced potion combat with full netherite protection. Combines the speed of potion PvP with superior armor durability and knockback resistance. Heavy focus on golden apples and fish for sustained healing between potion exchanges.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Nethpot.png"
+        description:
+            "Enhanced potion combat with full netherite protection. Combines the speed of potion PvP with superior armor durability and knockback resistance. Heavy focus on golden apples and fish for sustained healing between potion exchanges.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Nethpot.png",
     },
-	nethsword: {
+    nethsword: {
         title: "Netherite Sword Kit",
-        description: "Pure sword combat (But Netherite!) minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly! The Official Neth Sword Tierlist Discord is linked here: https://discord.gg/YF9ScxHvEZ",
-        image: "assets/kits/NethSword.png"
+        description:
+            "Pure sword combat (But Netherite!) minimalist setup focusing on fundamental melee mechanics. Clean inventory allowing focus on combos, strafing, and movement without distraction.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly! The Official Neth Sword Tierlist Discord is linked here: https://discord.gg/YF9ScxHvEZ",
+        image: "assets/kits/NethSword.png",
     },
     mace: {
         title: "Mace Kit",
-        description: "Vertical combat specialist kit built around the mace's fall damage mechanics introduced in 1.21. Features mace as primary weapon with golden apples for survivability. Potions provide mobility buffs and combat advantages for devastating smash attacks from height.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Mace.png"
+        description:
+            "Vertical combat specialist kit built around the mace's fall damage mechanics introduced in 1.21. Features mace as primary weapon with golden apples for survivability. Potions provide mobility buffs and combat advantages for devastating smash attacks from height.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Mace.png",
     },
     speed: {
         title: "Speed PvP Kit",
-        description: "High-velocity combat kit dominated by splash potions for sustained speed effects. Minimal equipment to maximize movement speed and agility during combat.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Speed.png"
+        description:
+            "High-velocity combat kit dominated by splash potions for sustained speed effects. Minimal equipment to maximize movement speed and agility during combat.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Speed.png",
     },
     elytra: {
         title: "Elytra Kit",
-        description: "Aerial combat specialist with focus on elytra flight mechanics. Multiple milk buckets for clearing negative effects mid-flight, alongside food, potions, and honey for landing safety.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Elytra.png"
+        description:
+            "Aerial combat specialist with focus on elytra flight mechanics. Multiple milk buckets for clearing negative effects mid-flight, alongside food, potions, and honey for landing safety.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Elytra.png",
     },
     trident: {
         title: "Trident Kit",
-        description: "Minimalist trident-focused combat setup emphasizing aquatic mobility and ranged attacks. Clean loadout designed for riptide propulsion and loyalty mechanics with room for tactical flexibility.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Trident.png"
+        description:
+            "Minimalist trident-focused combat setup emphasizing aquatic mobility and ranged attacks. Clean loadout designed for riptide propulsion and loyalty mechanics with room for tactical flexibility.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Trident.png",
     },
     cart: {
         title: "Minecart Kit",
-        description: "Minecart-based combat utilizing rails, momentum, and vehicle mechanics for unique movement-based fighting strategies.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Cart.png"
+        description:
+            "Minecart-based combat utilizing rails, momentum, and vehicle mechanics for unique movement-based fighting strategies.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Cart.png",
     },
     bed: {
         title: "Bed Kit",
-        description: "Bedwars-style combat setup with building materials and utility items. Features swords, bows, and tools for rapid base construction and destruction. Includes TNT, beds, and various blocks for tactical gameplay.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Bed.png"
+        description:
+            "Bedwars-style combat setup with building materials and utility items. Features swords, bows, and tools for rapid base construction and destruction. Includes TNT, beds, and various blocks for tactical gameplay.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Bed.png",
     },
     bow: {
         title: "Bow Kit",
-        description: "Archery-focused minimalist kit emphasizing ranged superiority. Features multiple bows and arrows for sustained ranged pressure with basic melee backup.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Bow.png"
+        description:
+            "Archery-focused minimalist kit emphasizing ranged superiority. Features multiple bows and arrows for sustained ranged pressure with basic melee backup.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Bow.png",
     },
     creeper: {
         title: "Creeper Kit",
-        description: "Explosive-themed combat with milk buckets for clearing debuffs and golden apples for survival. Includes tools and materials for tactical positioning around explosion mechanics.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Creeper.png"
+        description:
+            "Explosive-themed combat with milk buckets for clearing debuffs and golden apples for survival. Includes tools and materials for tactical positioning around explosion mechanics.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Creeper.png",
     },
     debuff: {
         title: "Debuff Kit",
-        description: "Status effect warfare specialist with heavy emphasis on negative splash potions. Arsenal designed to weaken opponents while maintaining personal advantages through strategic debuff application.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/DeBuff.png"
+        description:
+            "Status effect warfare specialist with heavy emphasis on negative splash potions. Arsenal designed to weaken opponents while maintaining personal advantages through strategic debuff application.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/DeBuff.png",
     },
     diasurv: {
         title: "Diamond Survival Kit",
-        description: "Diamond-tier crystal PvP combat with end crystal explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. Diamond armor provides solid protection while maintaining the core crystal combat mechanics with diamond and obsidian blocks for rapid placement.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/DiaSurv.png"
+        description:
+            "Diamond-tier crystal PvP combat with end crystal explosive warfare. Features extensive supplies of ender pearls for mobility, chorus fruit for emergency escapes, and respawn anchors for additional explosive options. Diamond armor provides solid protection while maintaining the core crystal combat mechanics with diamond and obsidian blocks for rapid placement.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/DiaSurv.png",
     },
     manhunt: {
         title: "Manhunt Kit",
-        description: "Diverse survival combat kit mirroring speedrunning scenarios. Includes crafting materials, tools for rapid resource gathering, and combat essentials for fighting while on the move. Features water buckets, beds for respawn setting, and golden apples for clutch healing.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/Manhunt.png"
+        description:
+            "Diverse survival combat kit mirroring speedrunning scenarios. Includes crafting materials, tools for rapid resource gathering, and combat essentials for fighting while on the move. Features water buckets, beds for respawn setting, and golden apples for clutch healing.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/Manhunt.png",
     },
     ogvanilla: {
         title: "OG Vanilla Kit",
-        description: "Classic vanilla Minecraft combat with traditional techniques and straightforward gameplay. Focuses on fundamental combat skills without specialized mechanics or modern additions.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
-        image: "assets/kits/OgVanilla.png"
-    }
+        description:
+            "Classic vanilla Minecraft combat with traditional techniques and straightforward gameplay. Focuses on fundamental combat skills without specialized mechanics or modern additions.\n\nWhen a tier testing queue opens for this kit, be sure to join right away to secure your test spot. LT3 tests and below have a 3-day cooldown, while HT3 and higher come with a 7-day cooldown, so plan accordingly!",
+        image: "assets/kits/OgVanilla.png",
+    },
 };
 
 // Show/hide Kit Info button based on gamemode
 function updateKitInfoButton() {
-    const kitInfoBtn = document.getElementById('kitInfoBtn');
-    if (currentGamemode !== 'overall' && kitInfo[currentGamemode]) {
-        kitInfoBtn.style.display = 'flex';
+    const kitInfoBtn = document.getElementById("kitInfoBtn");
+    if (currentGamemode !== "overall" && kitInfo[currentGamemode]) {
+        kitInfoBtn.style.display = "flex";
     } else {
-        kitInfoBtn.style.display = 'none';
+        kitInfoBtn.style.display = "none";
     }
 }
 
@@ -335,7 +357,7 @@ window.addEventListener("offline", () => {
 document.getElementById("refreshBtn").addEventListener("click", async () => {
     const btn = document.getElementById("refreshBtn");
     const originalContent = btn.innerHTML;
-    
+
     // Visual feedback - disable and show loading
     btn.disabled = true;
     btn.style.opacity = "0.6";
@@ -346,10 +368,10 @@ document.getElementById("refreshBtn").addEventListener("click", async () => {
         </svg>
         Refreshing...
     `;
-    
+
     // Reload the data
     await loadPlayers();
-    
+
     // Re-enable button after a short delay
     setTimeout(() => {
         btn.disabled = false;
@@ -803,7 +825,7 @@ function renderPlayers() {
             uhc: "assets/gamemode-icons/Uhc.svg",
             potion: "assets/gamemode-icons/Potion.svg",
             nethpot: "assets/gamemode-icons/Nethpot.svg",
-			nethsword: "assets/gamemode-icons/NethSword.svg",
+            nethsword: "assets/gamemode-icons/NethSword.svg",
             smp: "assets/gamemode-icons/Smp.svg",
             axe: "assets/gamemode-icons/Axe.svg",
             mace: "assets/gamemode-icons/Mace.svg",
@@ -819,7 +841,7 @@ function renderPlayers() {
             diasurv: "assets/gamemode-icons/DiaSurv.svg",
             manhunt: "assets/gamemode-icons/Manhunt.svg",
             ogvanilla: "assets/gamemode-icons/OgVanilla.svg",
-			nethuhc: "assets/gamemode-icons/NethUhc.svg",
+            nethuhc: "assets/gamemode-icons/NethUhc.svg",
             ltm: "assets/gamemode-icons/LTM.svg",
         };
 
@@ -870,7 +892,7 @@ function renderPlayers() {
         const subTiers = [
             "speed",
             "elytra",
-			"nethsword",
+            "nethsword",
             "trident",
             "cart",
             "bed",
@@ -881,93 +903,91 @@ function renderPlayers() {
             "manhunt",
             "ogvanilla",
         ];
-		
-		const limitedTiers = [
-            "nethuhc",
-            "ltm",
-        ];
+
+        const limitedTiers = ["nethuhc", "ltm"];
 
         let gamemodeDisplay = (() => {
-    // Separate tiers into main, sub, and limited categories
-    const playerMainTiers = [];
-    const playerSubTiers = [];
-    const playerLimitedTiers = [];
+            // Separate tiers into main, sub, and limited categories
+            const playerMainTiers = [];
+            const playerSubTiers = [];
+            const playerLimitedTiers = [];
 
-    // Sort main tiers in order and by tier hierarchy
-    mainTiers.forEach((gm) => {
-        if (p.tiers[gm]) {
-            playerMainTiers.push([gm, p.tiers[gm]]);
-        }
-    });
+            // Sort main tiers in order and by tier hierarchy
+            mainTiers.forEach((gm) => {
+                if (p.tiers[gm]) {
+                    playerMainTiers.push([gm, p.tiers[gm]]);
+                }
+            });
 
-    // Sort sub tiers in order and by tier hierarchy
-    subTiers.forEach((gm) => {
-        if (p.tiers[gm]) {
-            playerSubTiers.push([gm, p.tiers[gm]]);
-        }
-    });
+            // Sort sub tiers in order and by tier hierarchy
+            subTiers.forEach((gm) => {
+                if (p.tiers[gm]) {
+                    playerSubTiers.push([gm, p.tiers[gm]]);
+                }
+            });
 
-    // Sort limited tiers in order and by tier hierarchy
-    limitedTiers.forEach((gm) => {
-        if (p.tiers[gm]) {
-            playerLimitedTiers.push([gm, p.tiers[gm]]);
-        }
-    });
+            // Sort limited tiers in order and by tier hierarchy
+            limitedTiers.forEach((gm) => {
+                if (p.tiers[gm]) {
+                    playerLimitedTiers.push([gm, p.tiers[gm]]);
+                }
+            });
 
-    // Sort each array by tier hierarchy
-    const sortByTierHierarchy = (a, b) => {
-        const rankA = tierHierarchy[a[1]] ?? 999;
-        const rankB = tierHierarchy[b[1]] ?? 999;
-        return rankA - rankB;
-    };
+            // Sort each array by tier hierarchy
+            const sortByTierHierarchy = (a, b) => {
+                const rankA = tierHierarchy[a[1]] ?? 999;
+                const rankB = tierHierarchy[b[1]] ?? 999;
+                return rankA - rankB;
+            };
 
-    playerMainTiers.sort(sortByTierHierarchy);
-    playerSubTiers.sort(sortByTierHierarchy);
-    playerLimitedTiers.sort(sortByTierHierarchy);
+            playerMainTiers.sort(sortByTierHierarchy);
+            playerSubTiers.sort(sortByTierHierarchy);
+            playerLimitedTiers.sort(sortByTierHierarchy);
 
-    const createTierItem = ([gm, tier]) => {
-        const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
-        const tierClass = tier.toLowerCase();
+            const createTierItem = ([gm, tier]) => {
+                const iconSrc =
+                    gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+                const tierClass = tier.toLowerCase();
 
-        return `<div class="gamemode-tier-item">
+                return `<div class="gamemode-tier-item">
           <div class="gamemode-tier-icon-container" style="border-color: var(--${tierClass}, #666);">
             <img class="gamemode-tier-icon" src="${iconSrc}" alt="${gm}" 
                  onerror="this.style.display='none';">
           </div>
           <span class="tier ${tierClass}">${tier}</span>
         </div>`;
-    };
+            };
 
-    let html = "";
+            let html = "";
 
-    if (playerMainTiers.length > 0) {
-        html += '<div class="tier-row-wrapper">';
-        html += '<span class="tier-row-label">Main Tiers:</span>';
-        html += '<div class="tier-row">';
-        html += playerMainTiers.map(createTierItem).join("");
-        html += "</div>";
-        html += "</div>";
-    }
+            if (playerMainTiers.length > 0) {
+                html += '<div class="tier-row-wrapper">';
+                html += '<span class="tier-row-label">Main Tiers:</span>';
+                html += '<div class="tier-row">';
+                html += playerMainTiers.map(createTierItem).join("");
+                html += "</div>";
+                html += "</div>";
+            }
 
-    if (playerSubTiers.length > 0) {
-        html += '<div class="tier-row-wrapper">';
-        html += '<span class="tier-row-label">SubTiers:</span>';
-        html += '<div class="tier-row">';
-        html += playerSubTiers.map(createTierItem).join("");
-        html += "</div>";
-        html += "</div>";
-    }
+            if (playerSubTiers.length > 0) {
+                html += '<div class="tier-row-wrapper">';
+                html += '<span class="tier-row-label">SubTiers:</span>';
+                html += '<div class="tier-row">';
+                html += playerSubTiers.map(createTierItem).join("");
+                html += "</div>";
+                html += "</div>";
+            }
 
-    if (playerLimitedTiers.length > 0) {
-        html += '<div class="tier-row-wrapper">';
-        html += '<span class="tier-row-label">Limited Tiers:</span>';
-        html += '<div class="tier-row">';
-        html += playerLimitedTiers.map(createTierItem).join("");
-        html += "</div>";
-        html += "</div>";
-    }
+            if (playerLimitedTiers.length > 0) {
+                html += '<div class="tier-row-wrapper">';
+                html += '<span class="tier-row-label">Limited Tiers:</span>';
+                html += '<div class="tier-row">';
+                html += playerLimitedTiers.map(createTierItem).join("");
+                html += "</div>";
+                html += "</div>";
+            }
 
-    return html;
+            return html;
         })();
 
         const row = document.createElement("div");
@@ -1049,7 +1069,7 @@ function openPlayerModal(player) {
         uhc: "assets/gamemode-icons/Uhc.svg",
         potion: "assets/gamemode-icons/Potion.svg",
         nethpot: "assets/gamemode-icons/Nethpot.svg",
-		nethsword: "assets/gamemode-icons/NethSword.svg",
+        nethsword: "assets/gamemode-icons/NethSword.svg",
         smp: "assets/gamemode-icons/Smp.svg",
         axe: "assets/gamemode-icons/Axe.svg",
         mace: "assets/gamemode-icons/Mace.svg",
@@ -1066,7 +1086,7 @@ function openPlayerModal(player) {
         manhunt: "assets/gamemode-icons/Manhunt.svg",
         ogvanilla: "assets/gamemode-icons/OgVanilla.svg",
         ltm: "assets/gamemode-icons/LTM.svg",
-		nethuhc: "assets/gamemode-icons/NethUhc.svg",
+        nethuhc: "assets/gamemode-icons/NethUhc.svg",
     };
 
     // Define tier hierarchy for sorting (higher tiers first)
@@ -1199,7 +1219,8 @@ function openPlayerModal(player) {
       ${sortedTiers
           .map(([gm, tier]) => {
               const tierClass = tier.toLowerCase();
-              const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+              const iconSrc =
+                  gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
 
               return `
           <div class="tier-item">
@@ -1291,15 +1312,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 const playerModal = document.getElementById("playerModal"); // Add this too
                 const tierInfoModal = document.getElementById("tierInfoModal"); // Add this too
-				const kitInfoModal = document.getElementById("kitInfoModal");
+                const kitInfoModal = document.getElementById("kitInfoModal");
 
                 // Hide all modals
                 if (contextMenu && contextMenu.style.display !== "none") {
                     contextMenu.style.display = "none";
                 }
-				if (kitInfoModal && kitInfoModal.style.display !== "none") {
-    kitInfoModal.style.display = "none";
-}
+                if (kitInfoModal && kitInfoModal.style.display !== "none") {
+                    kitInfoModal.style.display = "none";
+                }
                 if (regionModal && regionModal.style.display !== "none") {
                     regionModal.style.display = "none";
                 }
@@ -1347,10 +1368,12 @@ document.getElementById("searchBox").addEventListener("input", (e) => {
     renderPlayers();
 });
 
-document.querySelectorAll('.gamemode-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-        document.querySelectorAll('.gamemode-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+document.querySelectorAll(".gamemode-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+        document
+            .querySelectorAll(".gamemode-tab")
+            .forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
         currentGamemode = tab.dataset.gamemode;
         currentPage = 1;
         updateKitInfoButton();
@@ -1493,18 +1516,18 @@ document.addEventListener("click", (e) => {
 });
 
 // Kit Info modal handlers
-document.getElementById('kitInfoBtn').addEventListener('click', () => {
+document.getElementById("kitInfoBtn").addEventListener("click", () => {
     const info = kitInfo[currentGamemode];
     if (info) {
-        document.getElementById('kitInfoTitle').textContent = info.title;
-        document.getElementById('kitInfoDesc').textContent = info.description;
-        document.querySelector('#kitInfoImage img').src = info.image;
-        document.getElementById('kitInfoModal').style.display = 'flex';
+        document.getElementById("kitInfoTitle").textContent = info.title;
+        document.getElementById("kitInfoDesc").textContent = info.description;
+        document.querySelector("#kitInfoImage img").src = info.image;
+        document.getElementById("kitInfoModal").style.display = "flex";
     }
 });
 
-document.getElementById('closeKitInfo').addEventListener('click', () => {
-    document.getElementById('kitInfoModal').style.display = 'none';
+document.getElementById("closeKitInfo").addEventListener("click", () => {
+    document.getElementById("kitInfoModal").style.display = "none";
 });
 
 document.addEventListener("DOMContentLoaded", () => {
