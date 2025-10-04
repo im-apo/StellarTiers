@@ -307,15 +307,15 @@ function renderPlayers() {
     }
 
     const gamemodeIcons = {
-        crystal: "assets/gamemode-icons/Crystal.svg",
-        sword: "assets/gamemode-icons/Sword.svg",
-        uhc: "assets/gamemode-icons/Uhc.svg",
-        potion: "assets/gamemode-icons/Potion.svg",
-        nethpot: "assets/gamemode-icons/Nethpot.svg",
-        smp: "assets/gamemode-icons/.svg",
-        axe: "assets/gamemode-icons/Axe.svg",
-        mace: "assets/gamemode-icons/Mace.svg",
-        diasmp: "assets/gamemode-icons/Diasmp.svg",
+        crystal: "../assets/gamemode-icons/Crystal.svg",
+        sword: "../assets/gamemode-icons/Sword.svg",
+        uhc: "../assets/gamemode-icons/Uhc.svg",
+        potion: "../assets/gamemode-icons/Potion.svg",
+        nethpot: "../assets/gamemode-icons/Nethpot.svg",
+        smp: "../assets/gamemode-icons/.svg",
+        axe: "../assets/gamemode-icons/Axe.svg",
+        mace: "../assets/gamemode-icons/Mace.svg",
+        diasmp: "../assets/gamemode-icons/Diasmp.svg",
     };
 
     const tierHierarchy = {
@@ -366,9 +366,7 @@ function renderPlayers() {
                       playerTiers.sort(sortByTierHierarchy);
 
                       const createTierItem = ([gm, tier]) => {
-                          const iconSrc =
-                              gamemodeIcons[gm] ||
-                              "assets/gamemode-icons/Overall.svg";
+                          const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
                           const tierClass = tier.toLowerCase();
 
                           return `<div class="gamemode-tier-item">
@@ -467,15 +465,15 @@ function openPlayerModal(player) {
     const badge = getBadge(totalPoints);
 
     const gamemodeIcons = {
-        crystal: "assets/gamemode-icons/Crystal.svg",
-        sword: "assets/gamemode-icons/Sword.svg",
-        uhc: "assets/gamemode-icons/Uhc.svg",
-        potion: "assets/gamemode-icons/Potion.svg",
-        nethpot: "assets/gamemode-icons/Nethpot.svg",
-        smp: "assets/gamemode-icons/Smp.svg",
-        axe: "assets/gamemode-icons/Axe.svg",
-        mace: "assets/gamemode-icons/Mace.svg",
-        diasmp: "assets/gamemode-icons/Diasmp.svg",
+        crystal: "../assets/gamemode-icons/Crystal.svg",
+        sword: "../assets/gamemode-icons/Sword.svg",
+        uhc: "../assets/gamemode-icons/Uhc.svg",
+        potion: "../assets/gamemode-icons/Potion.svg",
+        nethpot: "../assets/gamemode-icons/Nethpot.svg",
+        smp: "../assets/gamemode-icons/Smp.svg",
+        axe: "../assets/gamemode-icons/Axe.svg",
+        mace: "../assets/gamemode-icons/Mace.svg",
+        diasmp: "../assets/gamemode-icons/Diasmp.svg",
     };
 
     const tierHierarchy = {
@@ -577,8 +575,7 @@ function openPlayerModal(player) {
       ${sortedTiers
           .map(([gm, tier]) => {
               const tierClass = tier.toLowerCase();
-              const iconSrc =
-                  gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
+              const iconSrc = gamemodeIcons[gm] || "assets/gamemode-icons/Overall.svg";
 
               return `
             <div class="tier-item">
