@@ -21,6 +21,12 @@ The Axis Team Website serves as the **central hub** for the community, combining
 - 📦 **Resources Page** – Download community-made texture packs and guides.
 
 ---
+## LICENSE
+
+All files are licensed under the MIT license.
+[![MIT License](https://img.shields.io/github/license/PurpurMC/Purpur?&logo=github)](LICENSE)
+
+---
 
 ## 🚀 Features
 
@@ -37,10 +43,8 @@ The Axis Team Website serves as the **central hub** for the community, combining
 
 - **HTML5** — Semantic structure  
 - **CSS3** — Custom gradients, shadows, and responsive design  
-- **JavaScript (Vanilla)** — UI interactivity (modals, navbar, animations)  
+- **JavaScript (Vanilla)** — UI interactivity (modals, navbar, animations, and linking to backend)  
 
 ---
-
-## 📁 Project Structure
 
 
