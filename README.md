@@ -1,15 +1,14 @@
+<div align="center">
 # 🧭 Axis Team Website
 
 An interactive, modern website for the **Axis Team** community — featuring a **forum-style homepage**, **PvP player rankings**, **media highlights**, and **resources** for competitive Minecraft players.
 
-![Axis Team Logo](logo.png)
+<a href="https://im-apo.github.io/StellarTiers/">
+  <img src="logo.png" alt="Axis">
+</a>
+[![MIT License](https://img.shields.io/github/license/PurpurMC/Purpur?&logo=github)](LICENSE)
 
----
-
-## 🌐 Live Demo
-
-**Visit the live site:** [Axis Team Website](https://im-apo.github.io/stellartiers.github.io/)
-
+</div>
 ---
 
 ## 🏠 Project Overview
@@ -46,5 +45,6 @@ All files are licensed under the MIT license.
 - **JavaScript (Vanilla)** — UI interactivity (modals, navbar, animations, and linking to backend)  
 
 ---
+
 
 
