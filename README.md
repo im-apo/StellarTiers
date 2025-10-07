@@ -8,7 +8,7 @@ An interactive, modern website for the **Axis Team** community — featuring a *
   <img src="logo.png" alt="Axis">
 </a>
 
-[![MIT License](https://img.shields.io/github/license/PurpurMC/Purpur?&logo=github)](LICENSE)
+[![MIT License](https://img.shields.io/github/license/PurpurMC/Purpur?&logo=github)](LICENSE)[![CodeFactor](https://www.codefactor.io/repository/github/im-apo/stellartiers/badge)](https://www.codefactor.io/repository/github/im-apo/stellartiers)
 
 </div>
 ---
@@ -47,6 +47,7 @@ All files are licensed under the MIT license.
 - **JavaScript (Vanilla)** — UI interactivity (modals, navbar, animations, and linking to backend)  
 
 ---
+
 
 
 
