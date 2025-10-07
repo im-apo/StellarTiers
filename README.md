@@ -2,7 +2,7 @@
 
 An interactive, modern website for the **Axis Team** community — featuring a **forum-style homepage**, **PvP player rankings**, **media highlights**, and **resources** for competitive Minecraft players.
 
-![Axis Team Logo](https://im-apo.github.io/stellartiers.github.io/logo.png)
+![Axis Team Logo](logo.png)
 
 ---
 
@@ -42,4 +42,5 @@ The Axis Team Website serves as the **central hub** for the community, combining
 ---
 
 ## 📁 Project Structure
+
 
