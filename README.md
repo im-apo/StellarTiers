@@ -1,5 +1,6 @@
 <div align="center">
-# 🧭 Axis Team Website
+
+  # 🧭 Axis Team Website
 
 An interactive, modern website for the **Axis Team** community — featuring a **forum-style homepage**, **PvP player rankings**, **media highlights**, and **resources** for competitive Minecraft players.
 
@@ -46,6 +47,7 @@ All files are licensed under the MIT license.
 - **JavaScript (Vanilla)** — UI interactivity (modals, navbar, animations, and linking to backend)  
 
 ---
+
 
 
 
