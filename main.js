@@ -227,4 +227,27 @@ const allRegions=["na","eu","as","sa","me","au","af"];if(allRegions.every((r)=>s
 updateOverallTabAppearance();currentPage=1;renderPlayers()}});document.getElementById("regionFilterModal").addEventListener("click",(e)=>{if(e.target===regionModal||e.target.classList.contains("close-region-filter")){regionModal.style.display="none"}});const contextMenu=document.getElementById("playerContextMenu");let contextPlayer=null;document.querySelector("#playerList").addEventListener("contextmenu",(e)=>{const row=e.target.closest(".player-row");if(row){e.preventDefault();contextPlayer={name:row.dataset.username,points:row.dataset.points,tiers:row.dataset.tiers,};contextMenu.querySelector(".context-label").innerText=`Profile – ${contextPlayer.name}`;contextMenu.style.top=`${e.pageY}px`;contextMenu.style.left=`${e.pageX}px`;contextMenu.style.display="block"}});contextMenu.addEventListener("click",(e)=>{if(!contextPlayer)return;const action=e.target.dataset.action;if(action==="username"){navigator.clipboard.writeText(contextPlayer.name)}else if(action==="tiers"){navigator.clipboard.writeText(contextPlayer.tiers)}else if(action==="points"){navigator.clipboard.writeText(contextPlayer.points)}
 contextMenu.style.display="none"});document.addEventListener("click",(e)=>{if(!contextMenu.contains(e.target)&&!regionModal.contains(e.target)){contextMenu.style.display="none"}});let lastScrollTop=0;const navbar=document.getElementById('navbar');const scrollThreshold=30;if(navbar){window.addEventListener('scroll',()=>{let scrollTop=window.pageYOffset||document.documentElement.scrollTop;if(scrollTop>lastScrollTop&&scrollTop>scrollThreshold){navbar.classList.add('hidden')}else{navbar.classList.remove('hidden')}
 lastScrollTop=scrollTop<=0?0:scrollTop},!1)}
-document.getElementById("kitInfoBtn").addEventListener("click",()=>{const info=kitInfo[currentGamemode];if(info){document.getElementById("kitInfoTitle").textContent=info.title;document.getElementById("kitInfoDesc").textContent=info.description;document.querySelector("#kitInfoImage img").src=info.image;document.getElementById("kitInfoModal").style.display="flex"}});document.getElementById("closeKitInfo").addEventListener("click",()=>{document.getElementById("kitInfoModal").style.display="none"});document.addEventListener("DOMContentLoaded",()=>{window.loadStartTime=Date.now();loadPlayers()})
+document.getElementById("kitInfoBtn").addEventListener("click",()=>{const info=kitInfo[currentGamemode];if(info){document.getElementById("kitInfoTitle").textContent=info.title;document.getElementById("kitInfoDesc").textContent=info.description;document.querySelector("#kitInfoImage img").src=info.image;document.getElementById("kitInfoModal").style.display="flex"}});document.getElementById("closeKitInfo").addEventListener("click",()=>{document.getElementById("kitInfoModal").style.display="none"});document.addEventListener("DOMContentLoaded",()=>{window.loadStartTime=Date.now();loadPlayers()});console.log(`MIT License
+
+Copyright (c) 2025 ImApo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`);console.log(`-----------------------------------------------------------------------------------
+If Website appears to be Down Contact ImApo Immediately
+discord: cxnine._ Axis Discord Server: https://discord.gg/e39z2S4Edg
+-----------------------------------------------------------------------------------`)
