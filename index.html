@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1700, user-scalable=yes">
-    <meta property="og:title" content="Axis Team Tierlist - Rankings">
+    <meta property="og:title" content="Axis Tierlist - Rankings">
     <meta property="og:description" content="Interactive tierlist showcasing skilled Minecraft PvP players across Crystal, Sword, UHC, Potion, and more gamemodes. View detailed rankings and player statistics.">
     <meta property="og:image" content="https://im-apo.github.io/stellartiers.github.io/logo.png">
-    <meta property="og:image:alt" content="Axis Team Logo">
+    <meta property="og:image:alt" content="Axis Logo">
     <meta property="og:url" content="https://im-apo.github.io/stellartiers.github.io/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Axis Team">
+    <meta property="og:site_name" content="Axis Tierlist">
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Axis Team Tierlist - Rankings">
+    <meta name="twitter:title" content="Axis Tierlist - Rankings">
     <meta name="twitter:description" content="Interactive tierlist showcasing skilled Minecraft PvP players across multiple gamemodes. View rankings, stats, and player profiles.">
     <meta name="twitter:image" content="https://im-apo.github.io/stellartiers.github.io/logo.png">
-    <meta name="twitter:image:alt" content="Axis Team Logo">
+    <meta name="twitter:image:alt" content="Axis Logo">
     <!-- Additional SEO Meta Tags -->
-    <meta name="description" content="Explore Axis Team's comprehensive tierlist featuring top Minecraft PvP players across Crystal PvP, Sword, UHC, Potion, and more competitive gamemodes.">
-    <meta name="keywords" content="minecraft, pvp, tierlist, crystal pvp, sword pvp, uhc, competitive minecraft, rankings, axis team">
+    <meta name="description" content="Explore Axis's comprehensive tierlist featuring top Minecraft PvP players across Crystal PvP, Sword, UHC, Potion, and more competitive gamemodes.">
+    <meta name="keywords" content="minecraft, pvp, tierlist, crystal pvp, sword pvp, uhc, competitive minecraft, rankings, axis">
     <meta name="author" content="ImApo">
     <!-- Theme and Branding -->
     <meta name="theme-color" content="#1a1a1a">
@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="styles.css" />
     <meta property="og:type" content="website">
     <meta name="color-scheme" content="dark">
-    <title>Axis Team Tierlist - Rankings</title>
+    <title>Axis Tierlist - Rankings</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@
     <nav class="top-navbar" id="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="logo.png" alt="Axis Team" class="navbar-logo-img" onerror="this.style.display='none';">
-                <span>Axis Team</span>
+                <img src="logo.png" alt="Axis Logo" class="navbar-logo-img" onerror="this.style.display='none';">
+                <span>Axis Website</span>
             </a>
             <div class="navbar-tabs">
                 <a href="Home/" class="navbar-tab">
@@ -75,9 +75,9 @@
         </div>
     </nav>
     <div class="loading-screen" id="loadingScreen">
-        <img src="logo.png" alt="Axis Team Logo" class="logo" style="margin-bottom: 24px;" onerror="this.style.display='none';">
+        <img src="logo.png" alt="Axis Logo" class="logo" style="margin-bottom: 24px;" onerror="this.style.display='none';">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Loading Axis Team Tierlist</div>
+        <div class="loading-text">Loading Axis Tierlist</div>
         <div class="loading-subtext" id="loadingSubtext">Please wait...</div>
     </div>
     <div class="container">
@@ -112,9 +112,9 @@
                 <button class="action-button" id="extiersBtn">
                     <img src="assets/Extiers.webp" alt="Stellar Icon" class="button-icon"> Go To ExTiers </button>
             </div>
-            <img src="logo.png" alt="Axis Team Logo" class="logo" onerror="this.style.display='none';" style="cursor: pointer;" id="logoBtn">
-            <h1>Axis Team Tierlist</h1>
-            <p>Axis Team's tierlist</p>
+            <img src="logo.png" alt="Axis Logo" class="logo" onerror="this.style.display='none';" style="cursor: pointer;" id="logoBtn">
+            <h1>Axis Tierlist</h1>
+            <p>Axis Community's Tierlist</p>
             <p2>Made By The One and Only ImApo, </p2>
 			<p2>Run /verify with your username in the discord server!</p2>
             <div id="searchContainer" style="
@@ -527,7 +527,17 @@
             </table>
         </div>
     </div>
-    <script src="main.js" defer></script>
+    <script>
+    // Handle redirects from 404.html
+		(function() {
+			const redirect = sessionStorage.getItem('redirect');
+			if (redirect) {
+				sessionStorage.removeItem('redirect');
+				history.replaceState(null, null, redirect);
+			}
+		})();
+	</script>
+	<script src="main.js" defer></script>
     <div class="footer" id="footer">
         <strong>StellarTiers© ImApo 2025</strong>
     </div>
