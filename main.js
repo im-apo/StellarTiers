@@ -50,7 +50,8 @@ setTimeout(()=>{if(loadingSubtext){loadingSubtext.textContent="Retrying...";load
 loadPlayers()},3000)}}
 function calculatePoints(player){let total=0;for(const mode in player.tiers){total+=tierPoints[player.tiers[mode]]||0}
 return total}
-document.getElementById("copyIpBtn").addEventListener("click",()=>{navigator.clipboard.writeText("fadedmc.net");const popup=document.getElementById("copyPopup");popup.style.display="block";setTimeout(()=>(popup.style.display="none"),2000)});document.getElementById("discordBtn").addEventListener("click",()=>{window.open("https://discord.gg/e39z2S4Edg","_blank")});document.getElementById("stellarTiersBtn").addEventListener("click",()=>{window.location.href="StellarTiers/"});document.getElementById("extiersBtn").addEventListener("click",()=>{window.location.href="https://extiers.com/ranking/overall"});function getBadge(points){if(points>=300)
+document.getElementById("copyIpBtn").addEventListener("click",()=>{navigator.clipboard.writeText("fadedmc.net");const popup=document.getElementById("copyPopup");popup.style.display="block";setTimeout(()=>(popup.style.display="none"),2000)});document.getElementById("discordBtn").addEventListener("click",()=>{window.open("https://discord.gg/e39z2S4Edg","_blank")});document.getElementById("stellarTiersBtn").addEventListener("click",()=>{window.location.href="StellarTiers/"});document.getElementById("extiersBtn").addEventListener("click",()=>{window.location.href="https://extiers.com/ranking/overall"});function getBadge(points){if(points>=900)
+return{label:"Points Overlord",class:"pointoverlord",};if(points>=300)
 return{label:"Legendary",class:"legendary",};if(points>=200)
 return{label:"Master",class:"master",};if(points>=100)
 return{label:"Expert",class:"expert",};if(points>=50)
