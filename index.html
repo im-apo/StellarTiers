@@ -31,6 +31,12 @@
 	<link rel="stylesheet" href="/StellarTiers/styles.css">
     <meta property="og:type" content="website">
     <meta name="color-scheme" content="dark">
+	<script>
+  // Redirect root to the rankings overview
+  if (location.pathname === "/StellarTiers/" || location.pathname === "/StellarTiers/index.html") {
+    location.replace("/StellarTiers/rankings/overall");
+  }
+</script>
     <title>Axis Tierlist - Rankings</title>
 </head>
 
