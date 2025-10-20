@@ -145,24 +145,16 @@ column.appendChild(header);if(!players||players.length===0){const emptyState=doc
                 color: #64748b;
                 font-size: 0.9rem;
                 font-style: italic;
-            `;emptyState.textContent="No players in this tier";column.appendChild(emptyState)}else{players.forEach((player)=>{const tierCode=player.currentTierCode||"";const isHighTier=/HT/.test(tierCode);const isRetired=/^R/.test(tierCode);const playerDiv=document.createElement("div");playerDiv.classList.add("tier-column-player");if(isHighTier){playerDiv.classList.add("tier-column-player-high")}else{playerDiv.classList.add("tier-column-player-low")}
-if(isRetired){playerDiv.classList.add("tier-column-player-retired")}
-const tierIndicatorHTML=isRetired?`<img src="${fixAssetPath("assets/icons/retired_icon.svg")}" class="retired-indicator-icon" alt="Retired" onerror="this.style.display='none';">`:"";const htltIndicatorHTML=isHighTier?`<img src="${fixAssetPath("assets/icons/ht_icon.svg")}" class="tier-indicator-icon" alt="HT" onerror="this.style.display='none';">`:`<img src="${fixAssetPath("assets/icons/lt_icon.svg")}" class="tier-indicator-icon" alt="LT" onerror="this.style.display='none';">`;playerDiv.innerHTML=`
-                    <img src="${player.avatar}" alt="${
-                    player.name
-                }" class="player-avatar-small" onerror="this.style.display='none';">
+            `;emptyState.textContent="No players in this tier";column.appendChild(emptyState)}else{players.forEach((player)=>{const tierCode=player.currentTierCode||"";const isHighTier=/HT/.test(tierCode);const isRetired=/^R/.test(tierCode);const playerDiv=document.createElement("div");playerDiv.classList.add("tier-column-player");playerDiv.classList.add(isHighTier?"tier-column-player-high":"tier-column-player-low");if(isRetired)playerDiv.classList.add("tier-column-player-retired");const tierIndicatorHTML=isRetired?`<img src="${fixAssetPath("assets/icons/retired_icon.svg")}" class="retired-indicator-icon" alt="Retired" onerror="this.style.display='none';">`:"";const htltIndicatorHTML=isHighTier?`<img src="${fixAssetPath("assets/icons/ht_icon.svg")}" class="tier-indicator-icon" alt="HT" onerror="this.style.display='none';">`:`<img src="${fixAssetPath("assets/icons/lt_icon.svg")}" class="tier-indicator-icon" alt="LT" onerror="this.style.display='none';">`;playerDiv.innerHTML=`
+                    <img src="${player.avatar}" alt="${player.name}" class="player-avatar-small" onerror="this.style.display='none';">
                     <div class="tier-column-player-info">
-        <span class="tier-column-player-name ${
-            isHighTier ? "high-tier" : "low-tier"
-        }">
-            ${player.name}
-            <span class="player-region ${
-                player.region ? player.region.toLowerCase() : "unknown"
-            }">
-                ${player.region ? player.region.toUpperCase() : "UNKNOWN"}
-            </span>
-        </span>
-    </div>
+                        <span class="tier-column-player-name ${isHighTier ? "high-tier" : "low-tier"}">
+                            ${player.name}
+                            <span class="player-region ${player.region ? player.region.toLowerCase() : "unknown"}">
+                                ${player.region ? player.region.toUpperCase() : "UNKNOWN"}
+                            </span>
+                        </span>
+                    </div>
                     <div class="tier-column-player-icons">
                         ${tierIndicatorHTML}
                         ${htltIndicatorHTML}
