@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Redirecting...</title>
-    <script>
-        sessionStorage.setItem('redirect', location.pathname);
-        location.replace('/StellarTiers/');
-    </script>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    sessionStorage.setItem('redirect', location.pathname + location.search);
+    location.replace(location.origin + '/StellarTiers/');
+  </script>
 </head>
-<body></body>
+<body>
+</body>
 </html>
