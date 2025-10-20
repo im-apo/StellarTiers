@@ -194,9 +194,7 @@ row.innerHTML=`
             p.region
         }</span>
       </span>
-      <span class="player-points">${p.points} pts <span class="points-badge ${
-            badge.class
-        }">${badge.label}</span></span>
+      <span class="player-points"><span class="points-number">${p.points} pts</span> <span class="points-badge ${badge.class}">${badge.label}</span></span>
     </div>
   </div>
   <div class="gamemode-tiers">${gamemodeDisplay}</div>
@@ -215,9 +213,9 @@ function openPlayerModal(player){const modal=document.getElementById("playerModa
         }
       </h2>
       <div class="player-modal-points">
-        ${totalPoints} points
-        <span class="points-badge ${badge.class}">${badge.label}</span>
-      </div>
+		<span class="points-number">${totalPoints} points</span>
+		<span class="points-badge ${badge.class}">${badge.label}</span>
+	  </div>
     </div>
   `;const nameMcBtn=document.createElement("button");nameMcBtn.className="action-button";nameMcBtn.style.cssText=`
   background: rgba(30, 30, 30, 0.9);
