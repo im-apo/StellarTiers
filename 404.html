@@ -3,10 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>Redirecting...</title>
+
   <script>
-    sessionStorage.setItem('redirect', location.pathname + location.search);
-    location.replace(location.origin + '/StellarTiers/');
+    // Only run redirect logic on GitHub Pages
+    const isGitHubPages = location.hostname.endsWith("github.io");
+
+    if (isGitHubPages) {
+      // Store the original request path so SPA routers can restore it
+      sessionStorage.setItem("redirect", location.pathname + location.search);
+
+      // Replace with your repo base path
+      location.replace(location.origin + "/StellarTiers/");
+    }
   </script>
+
 </head>
 <body>
 </body>
