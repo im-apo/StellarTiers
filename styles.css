@@ -27,23 +27,23 @@
 
 body.light {
     /* Light mode */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    --border-color: rgba(148, 163, 184, 0.3);
+    --bg-primary: #f0f0f0;
+    --bg-secondary: #dcdcdc;
+    --bg-tertiary: #c2c2c2;
+    --text-primary: #111;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+    --border-color: rgba(120, 120, 120, 0.3);
     --card-bg: rgba(255, 255, 255, 0.95);
-    --modal-bg: rgba(248, 250, 252, 0.98);
-    --hover-bg: rgba(241, 245, 249, 0.95);
-    --button-bg: rgba(248, 250, 252, 0.95);
-    --button-border: rgba(148, 163, 184, 0.4);
+    --modal-bg: rgba(250, 250, 250, 0.98);
+    --hover-bg: rgba(230, 230, 230, 0.95);
+    --button-bg: rgba(245, 245, 245, 0.95);
+    --button-border: rgba(100, 100, 100, 0.4);
     --input-bg: rgba(255, 255, 255, 0.95);
-    --leaderboard-bg: rgba(248, 250, 252, 0.98);
-    --player-row-hover: rgba(241, 245, 249, 0.95);
-    --separator-color: rgba(148, 163, 184, 0.3);
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --leaderboard-bg: rgba(248, 248, 248, 0.98);
+    --player-row-hover: rgba(235, 235, 235, 0.95);
+    --separator-color: rgba(150, 150, 150, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -80,7 +80,7 @@ body::before {
 }
 
 body.light::before {
-    opacity: 0.05;
+    opacity: 0.08;
 }
 
 .container {
@@ -110,12 +110,8 @@ body.light::before {
     display: block;
     border: 3px solid var(--border-color);
     box-shadow: 0 0 20px var(--shadow-color);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease;
     cursor: pointer;
-}
-
-body.light .logo {
-    box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 .header h1 {
@@ -136,7 +132,7 @@ body:not(.light) .header h1 {
 }
 
 body.light .header h1 {
-    background: linear-gradient(135deg, #0f172a, #334155);
+    background: linear-gradient(135deg, #111, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -192,11 +188,7 @@ body.light .header h1 {
     background: var(--hover-bg);
     color: var(--text-primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px var(--shadow-color);
-}
-
-body.light .action-button:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(160, 160, 160, 0.4);
 }
 
 .action-button svg {
@@ -242,7 +234,7 @@ body:not(.light) .footer strong {
 }
 
 body.light .footer strong {
-    background: linear-gradient(135deg, #0f172a, #334155);
+    background: linear-gradient(135deg, #111, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -261,7 +253,7 @@ body.light .footer strong {
 }
 
 #pageSizeSelector:hover {
-    border-color: var(--text-secondary);
+    border-color: #999;
 }
 
 #pageSizeSelector:focus {
@@ -281,7 +273,7 @@ body.light .footer strong {
 }
 
 #searchContainer:hover {
-    border-color: var(--text-secondary);
+    border-color: #999;
 }
 
 #searchContainer:focus-within {
@@ -360,7 +352,7 @@ body.light .footer strong {
 
 .arrow-btn:hover {
     background: var(--hover-bg);
-    border-color: var(--text-secondary);
+    border-color: #aaa;
 }
 
 .gamemode-page {
@@ -391,15 +383,14 @@ body.light .footer strong {
 }
 
 .page-btn.active {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-    border-color: #6366f1;
+    background: linear-gradient(135deg, #333, #111);
+    border-color: #ccc;
     color: #fff;
     font-weight: 700;
 }
 
-body:not(.light) .page-btn.active {
-    background: linear-gradient(135deg, #333, #111);
-    border-color: #ccc;
+body.light .page-btn.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
 }
 
 .gamemode-tab {
@@ -422,14 +413,13 @@ body:not(.light) .page-btn.active {
 }
 
 .gamemode-tab.active {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-    border-color: #6366f1;
+    background: linear-gradient(135deg, #333, #111);
+    border-color: #ccc;
     color: #fff;
 }
 
-body:not(.light) .gamemode-tab.active {
-    background: linear-gradient(135deg, #333, #111);
-    border-color: #ccc;
+body.light .gamemode-tab.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
 }
 
 .gamemode-separator {
@@ -521,7 +511,7 @@ body:not(.light) .gamemode-tab.active {
     transform: scale(1.05);
 }
 
-/* Tier colors - These stay the same in both modes for consistency */
+/* Tier colors */
 .tier.ht1, .tier.rht1 { background: linear-gradient(135deg, #f472b6, #ec4899, #e879f9); }
 .tier.lt1, .tier.rlt1 { background: linear-gradient(135deg, #be123c, #ec4899, #f43f5e); }
 .tier.ht2, .tier.rht2 { background: linear-gradient(135deg, #8b5cf6, #c084fc, #e879f9); }
@@ -638,10 +628,6 @@ body:not(.light) .gamemode-tab.active {
     align-items: center;
     justify-content: center;
     z-index: 9999;
-}
-
-body.light .modal {
-    background: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -800,14 +786,13 @@ body.light .modal {
 }
 
 .navbar-tab.active {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-    border-color: #6366f1;
+    background: linear-gradient(135deg, #333, #111);
+    border-color: #ccc;
     color: #fff;
 }
 
-body:not(.light) .navbar-tab.active {
-    background: linear-gradient(135deg, #333, #111);
-    border-color: #ccc;
+body.light .navbar-tab.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
 }
 
 .region-filter-modal {
@@ -935,31 +920,5 @@ body:not(.light) .navbar-tab.active {
     
     .gamemode-tiers {
         margin-left: 0;
-        grid-column: 1 / -1;
-    }
-    
-    .tier-row-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .tier-row-label {
-        text-align: left;
-        min-width: auto;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    .header p, .header p2 {
-        font-size: 1rem;
-    }
-    
-    .navbar-container {
-        flex-direction: column;
-        height: auto;
-        padding: 12px 20px;
-        gap: 12px;
     }
 }
