@@ -105,6 +105,8 @@
                 <span id="copyPopup" style="display:none;"> Copied IP to clipboard! </span>
             </div>
             <div class="action-buttons-2">
+
+
                 <button class="action-button" id="stellarTiersBtn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -537,10 +539,56 @@
 			}
 		})();
 	</script>
-	<script src="/StellarTiers/main.js"></script>
     <div class="footer" id="footer">
         <strong>StellarTiers© ImApo 2025</strong>
     </div>
+	<button class="activity-feed-button" id="activityFeedBtn" title="Recent Activity">
+    📋
+</button>
+
+<div class="activity-feed-modal" id="activityFeedModal">
+    <div class="activity-feed-content">
+        <div class="activity-feed-header">
+            <h2 class="activity-feed-title">Recent Activity</h2>
+            <button class="close-btn" id="closeActivityFeed">&times;</button>
+        </div>
+        <div class="activity-list" id="activityList"></div>
+    </div>
+</div>
+
+<div class="comparison-modal" id="comparisonModal">
+    <div class="comparison-content">
+        <button class="close-btn" id="closeComparison">&times;</button>
+        <h2 style="text-align: center; margin-bottom: 20px; color: #e5e5e5;">Compare Players</h2>
+        
+        <div class="player-select-grid">
+            <div class="player-select-box" id="player1Box">
+                <label style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 8px; display: block;">
+                    Player 1
+                </label>
+                <input type="text" class="player-select-input" id="player1Input"
+                    placeholder="Enter player name..." list="playerList1">
+                <datalist id="playerList1"></datalist>
+            </div>
+            <div class="player-select-box" id="player2Box">
+                <label style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 8px; display: block;">
+                    Player 2
+                </label>
+                <input type="text" class="player-select-input" id="player2Input"
+                    placeholder="Enter player name..." list="playerList2">
+                <datalist id="playerList2"></datalist>
+            </div>
+        </div>
+        
+        <button class="compare-button" id="executeCompare" disabled>
+            Compare Players
+        </button>
+        <div id="comparisonResult" style="margin-top: 24px;"></div>
+    </div>
+</div>
+
+<!-- Load enhanced features -->
+<script src="/StellarTiers/main.js"></script>
 </body>
 
 </html>
