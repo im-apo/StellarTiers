@@ -590,11 +590,6 @@ if(p2){document.getElementById('player2Box').classList.add('selected')}else{docu
                 ❌ One or both players not found. Please check the names.
             </div>
         `}});const originalOpenPlayerModal=typeof openPlayerModal!=='undefined'?openPlayerModal:null;if(originalOpenPlayerModal){openPlayerModal=function(player){originalOpenPlayerModal(player);const modalBody=document.getElementById('modalBody');if(!document.getElementById('enhancedPlayerProfile')){const enhancedSection=document.createElement('div');enhancedSection.id='enhancedPlayerProfile';enhancedSection.innerHTML=`
-                <!-- Achievements Section -->
-                <div class="achievement-section">
-                    <h3 class="bio-section-title">🏆 Achievements</h3>
-                    <div id="playerAchievements"></div>
-                </div>
 
                 <!-- Bio Section -->
                 <div class="bio-section">
@@ -607,7 +602,7 @@ if(p2){document.getElementById('player2Box').classList.add('selected')}else{docu
                     ⚖️ Compare with Another Player
                 </button>
             `;modalBody.appendChild(enhancedSection);document.getElementById('openCompareFromProfile').addEventListener('click',()=>{document.getElementById('comparisonModal').classList.add('active');document.getElementById('playerModal').style.display='none';populatePlayerDatalist();document.getElementById('player1Input').value=player.name;document.getElementById('player1Box').classList.add('selected')})}
-const achievementsHtml=achievementSystem.renderAchievements(player.name);document.getElementById('playerAchievements').innerHTML=achievementsHtml;const bioHtml=playerBioSystem.renderBio(player.name);document.getElementById('playerBio').innerHTML=bioHtml;document.getElementById('enhancedPlayerProfile').style.display='block';const earned=achievementSystem.checkAchievements(player);if(earned.length>0){earned.forEach(achievement=>{activityFeed.addActivity('PEAK_TIER',{player:player.name,tier:achievement.name,gamemode:'achievement'})})}}}
+const bioHtml=playerBioSystem.renderBio(player.name);document.getElementById('playerBio').innerHTML=bioHtml;document.getElementById('enhancedPlayerProfile').style.display='block'}}
 enhanceSearchBox();function trackTierChange(playerName,oldTier,newTier,gamemode){activityFeed.addActivity('TIER_CHANGE',{player:playerName,oldTier,newTier,gamemode})}
 function trackNewPlayer(playerName){activityFeed.addActivity('NEW_PLAYER',{player:playerName})}
 function checkMilestones(){const totalPlayers=players.length;const milestones=[50,100,150,200,250,300,500,750,1000];milestones.forEach(milestone=>{if(totalPlayers===milestone){activityFeed.addActivity('MILESTONE',{message:`🎉 ${milestone} players on the tierlist!`})}})}
