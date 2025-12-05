@@ -379,43 +379,7 @@ style="background: ${gm === firstGamemode ? 'linear-gradient(135deg, #333, #111)
             </div>
         </div>
     `;body.querySelectorAll('.gamemode-selector-btn').forEach(btn=>{btn.addEventListener('click',(e)=>{body.querySelectorAll('.gamemode-selector-btn').forEach(b=>{b.classList.remove('active');b.style.background='rgba(30, 30, 30, 0.8)';b.style.borderColor='rgba(80, 80, 80, 0.4)';b.style.boxShadow='none'});btn.classList.add('active');btn.style.background='linear-gradient(135deg, #333, #111)';btn.style.borderColor='#ccc';btn.style.boxShadow='0 0 18px rgba(200, 200, 200, 0.7)';const selectedGamemode=btn.dataset.gamemode;const chart=body.querySelector('.tier-history-chart');chart.innerHTML=renderTierHistory(player,selectedGamemode)});btn.addEventListener('mouseenter',()=>{if(!btn.classList.contains('active')){btn.style.background='rgba(50, 50, 50, 0.9)';btn.style.borderColor='#999'}});btn.addEventListener('mouseleave',()=>{if(!btn.classList.contains('active')){btn.style.background='rgba(30, 30, 30, 0.8)';btn.style.borderColor='rgba(80, 80, 80, 0.4)'}})});modal.style.display="flex"}
-document.getElementById("closeTierHistory").addEventListener("click",()=>{document.getElementById("tierHistoryModal").style.display="none"});const ACHIEVEMENTS={FIRST_TIER:{id:'first_tier',name:'Getting Started',description:'Earned your first tier',icon:'🎯',rarity:'common'},TIER_1_ACHIEVED:{id:'tier_1',name:'Elite Player',description:'Reached Tier 1 in any gamemode',icon:'👑',rarity:'epic'},MULTI_GAMEMODE:{id:'multi_gm',name:'Versatile',description:'Have tiers in 3+ gamemodes',icon:'🎮',rarity:'rare'},MASTER_RANK:{id:'master',name:'Master of Combat',description:'Reached Master rank or higher',icon:'⚔️',rarity:'epic'},LEGENDARY_RANK:{id:'legendary',name:'Legendary Warrior',description:'Reached Legendary rank',icon:'🌟',rarity:'legendary'},POINT_MILESTONE_100:{id:'pts_100',name:'Centurion',description:'Earned 100+ points',icon:'💯',rarity:'rare'},POINT_MILESTONE_300:{id:'pts_300',name:'Point Master',description:'Earned 300+ points',icon:'💎',rarity:'legendary'},ALL_T1:{id:'all_t1',name:'Points Overlord',description:'Tier 1 in all gamemodes',icon:'👑',rarity:'mythic'}};class AchievementSystem{constructor(){this.playerAchievements=new Map();this.loadFromStorage()}
-checkAchievements(player){const earned=[];const playerData={tiers:player.tiers||{},points:calculatePoints(player)};if(this.checkFirstTier(playerData)&&!this.hasAchievement(player.name,'first_tier')){earned.push(this.unlockAchievement(player.name,'first_tier'))}
-if(this.checkTier1(playerData)&&!this.hasAchievement(player.name,'tier_1')){earned.push(this.unlockAchievement(player.name,'tier_1'))}
-if(this.checkMultiGamemode(playerData)&&!this.hasAchievement(player.name,'multi_gm')){earned.push(this.unlockAchievement(player.name,'multi_gm'))}
-if(playerData.points>=100&&!this.hasAchievement(player.name,'pts_100')){earned.push(this.unlockAchievement(player.name,'pts_100'))}
-if(playerData.points>=200&&!this.hasAchievement(player.name,'master')){earned.push(this.unlockAchievement(player.name,'master'))}
-if(playerData.points>=300&&!this.hasAchievement(player.name,'pts_300')){earned.push(this.unlockAchievement(player.name,'pts_300'))}
-if(playerData.points>=300&&!this.hasAchievement(player.name,'legendary')){earned.push(this.unlockAchievement(player.name,'legendary'))}
-if(this.checkAllT1(playerData)&&!this.hasAchievement(player.name,'all_t1')){earned.push(this.unlockAchievement(player.name,'all_t1'))}
-return earned.filter(a=>a!==null)}
-checkFirstTier(playerData){return Object.keys(playerData.tiers).length>0}
-checkTier1(playerData){return Object.values(playerData.tiers).some(tier=>tier.includes('T1')||tier.includes('T0'))}
-checkMultiGamemode(playerData){return Object.keys(playerData.tiers).length>=3}
-checkAllT1(playerData){const mainGamemodes=['crystal','sword','uhc','potion','nethpot','smp','axe','mace','diasmp'];return mainGamemodes.every(gm=>{const tier=playerData.tiers[gm];return tier&&(tier.includes('T1')||tier.includes('T0'))})}
-unlockAchievement(playerName,achievementId){if(!this.playerAchievements.has(playerName)){this.playerAchievements.set(playerName,[])}
-let achievementData=null;for(const achievement of Object.values(ACHIEVEMENTS)){if(achievement.id===achievementId){achievementData=achievement;break}}
-if(!achievementData){console.warn(`Achievement not found: ${achievementId}`);return null}
-const achievement={...achievementData,unlockedAt:Date.now()};this.playerAchievements.get(playerName).push(achievement);this.saveToStorage();return achievement}
-hasAchievement(playerName,achievementId){const achievements=this.playerAchievements.get(playerName)||[];return achievements.some(a=>a.id===achievementId)}
-getPlayerAchievements(playerName){return this.playerAchievements.get(playerName)||[]}
-saveToStorage(){try{const data=Array.from(this.playerAchievements.entries());localStorage.setItem('tierlist_achievements',JSON.stringify(data))}catch(e){console.warn('Could not save achievements:',e)}}
-loadFromStorage(){try{const stored=localStorage.getItem('tierlist_achievements');if(stored){const data=JSON.parse(stored);this.playerAchievements=new Map(data)}}catch(e){console.warn('Could not load achievements:',e)}}
-renderAchievements(playerName){const achievements=this.getPlayerAchievements(playerName);if(achievements.length===0){return'<div style="color: #64748b; text-align: center; padding: 20px;">No achievements yet</div>'}
-const rarityColors={common:'#94a3b8',rare:'#3b82f6',epic:'#8b5cf6',legendary:'#f59e0b',mythic:'#ec4899'};return `
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
-                ${achievements.map(achievement => `<div style="
-                        background: rgba(30, 30, 30, 0.8);
-                        border: 2px solid ${rarityColors[achievement.rarity]};
-                        border-radius: 12px;
-                        padding: 16px;
-                        text-align: center;
-                        transition: all 0.3s ease;
-                        cursor: pointer;
-                    " class="achievement-card"><div style="font-size: 48px; margin-bottom: 8px;">${achievement.icon}</div><div style="font-weight: 700; color: ${rarityColors[achievement.rarity]}; margin-bottom: 4px;">${achievement.name}</div><div style="font-size: 0.85rem; color: #9ca3af;">${achievement.description}</div><div style="font-size: 0.7rem; color: #64748b; margin-top: 8px; text-transform: uppercase;">${achievement.rarity}</div></div>`).join('')}
-            </div>
-        `}}
-const achievementSystem=new AchievementSystem();class PlayerBioSystem{constructor(){this.bios=new Map();this.loadFromStorage()}
+document.getElementById("closeTierHistory").addEventListener("click",()=>{document.getElementById("tierHistoryModal").style.display="none"});class PlayerBioSystem{constructor(){this.bios=new Map();this.loadFromStorage()}
 setBio(playerName,bioData){this.bios.set(playerName,{...bioData,lastUpdated:Date.now()});this.saveToStorage()}
 getBio(playerName){return this.bios.get(playerName)||null}
 saveToStorage(){try{const data=Array.from(this.bios.entries());localStorage.setItem('tierlist_bios',JSON.stringify(data))}catch(e){console.warn('Could not save bios:',e)}}
