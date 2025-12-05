@@ -388,13 +388,15 @@ if(playerData.points>=200&&!this.hasAchievement(player.name,'master')){earned.pu
 if(playerData.points>=300&&!this.hasAchievement(player.name,'pts_300')){earned.push(this.unlockAchievement(player.name,'pts_300'))}
 if(playerData.points>=300&&!this.hasAchievement(player.name,'legendary')){earned.push(this.unlockAchievement(player.name,'legendary'))}
 if(this.checkAllT1(playerData)&&!this.hasAchievement(player.name,'all_t1')){earned.push(this.unlockAchievement(player.name,'all_t1'))}
-return earned}
+return earned.filter(a=>a!==null)}
 checkFirstTier(playerData){return Object.keys(playerData.tiers).length>0}
 checkTier1(playerData){return Object.values(playerData.tiers).some(tier=>tier.includes('T1')||tier.includes('T0'))}
 checkMultiGamemode(playerData){return Object.keys(playerData.tiers).length>=3}
 checkAllT1(playerData){const mainGamemodes=['crystal','sword','uhc','potion','nethpot','smp','axe','mace','diasmp'];return mainGamemodes.every(gm=>{const tier=playerData.tiers[gm];return tier&&(tier.includes('T1')||tier.includes('T0'))})}
 unlockAchievement(playerName,achievementId){if(!this.playerAchievements.has(playerName)){this.playerAchievements.set(playerName,[])}
-const achievement={...ACHIEVEMENTS[achievementId.toUpperCase()],unlockedAt:Date.now()};this.playerAchievements.get(playerName).push(achievement);this.saveToStorage();return achievement}
+let achievementData=null;for(const achievement of Object.values(ACHIEVEMENTS)){if(achievement.id===achievementId){achievementData=achievement;break}}
+if(!achievementData){console.warn(`Achievement not found: ${achievementId}`);return null}
+const achievement={...achievementData,unlockedAt:Date.now()};this.playerAchievements.get(playerName).push(achievement);this.saveToStorage();return achievement}
 hasAchievement(playerName,achievementId){const achievements=this.playerAchievements.get(playerName)||[];return achievements.some(a=>a.id===achievementId)}
 getPlayerAchievements(playerName){return this.playerAchievements.get(playerName)||[]}
 saveToStorage(){try{const data=Array.from(this.playerAchievements.entries());localStorage.setItem('tierlist_achievements',JSON.stringify(data))}catch(e){console.warn('Could not save achievements:',e)}}
@@ -488,7 +490,7 @@ ${bio.socials.discord?`
                 ${bio.playstyle ? `<div style="margin-top: 8px; color: #9ca3af; font-size: 0.85rem;"><strong>Playstyle:</strong>${bio.playstyle}</div>` : ''}
             </div>
         `}}
-const playerBioSystem=new PlayerBioSystem();class PlayerComparison{compare(player1,player2){const p1Points=calculatePoints(player1);const p2Points=calculatePoints(player2);const comparison={players:[player1.name,player2.name],totalPoints:[p1Points,p2Points],winner:p1Points>p2Points?player1.name:player2.name,gamemodes:{}};const allGamemodes=new Set([...Object.keys(player1.tiers||{}),...Object.keys(player2.tiers||{})]);allGamemodes.forEach(gm=>{const t1=player1.tiers?.[gm];const t2=player2.tiers?.[gm];comparison.gamemodes[gm]={player1:t1||'N/A',player2:t2||'N/A',better:this.compareTiers(t1,t2)}});return comparison}
+const playerBioSystem=new PlayerBioSystem();playerBioSystem.setBio('ImApo',{description:'Creator and developer of the Axis Tierlist. Competitive PvP player with an aggressive playstyle.',socials:{youtube:'https://www.youtube.com/@Im-Apo',discord:'cxnine._'},favGamemode:'Diamond SMP',playstyle:'Aggressive'});class PlayerComparison{compare(player1,player2){const p1Points=calculatePoints(player1);const p2Points=calculatePoints(player2);const comparison={players:[player1.name,player2.name],totalPoints:[p1Points,p2Points],winner:p1Points>p2Points?player1.name:player2.name,gamemodes:{}};const allGamemodes=new Set([...Object.keys(player1.tiers||{}),...Object.keys(player2.tiers||{})]);allGamemodes.forEach(gm=>{const t1=player1.tiers?.[gm];const t2=player2.tiers?.[gm];comparison.gamemodes[gm]={player1:t1||'N/A',player2:t2||'N/A',better:this.compareTiers(t1,t2)}});return comparison}
 compareTiers(tier1,tier2){if(!tier1&&!tier2)return'tie';if(!tier1)return'player2';if(!tier2)return'player1';const tierRank={'HT0':0,'LT0':1,'RHT0':0,'RLT0':1,'HT1':2,'LT1':3,'RHT1':2,'RLT1':3,'HT2':4,'LT2':5,'RHT2':4,'RLT2':5,'HT3':6,'LT3':7,'RHT3':6,'RLT3':7,'HT4':8,'LT4':9,'RHT4':8,'RLT4':9,'HT5':10,'LT5':11,'RHT5':10,'RLT5':11,'HT6':12,'LT6':13,'RHT6':12,'RLT6':13,};const rank1=tierRank[tier1]??999;const rank2=tierRank[tier2]??999;if(rank1<rank2)return'player1';if(rank2<rank1)return'player2';return'tie'}
 renderComparison(comparison){const[p1Name,p2Name]=comparison.players;const[p1Points,p2Points]=comparison.totalPoints;return `
             <div style="padding: 20px;">
