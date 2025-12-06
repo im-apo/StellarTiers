@@ -1524,9 +1524,45 @@
         <script>
             // Moderation system - banned terms
             const BANNED_TERMS = [
-                'illegal', 'drugs', 'weapons', 'hack', 'cheat', 'exploit',
-                'bomb', 'kill', 'murder', 'attack', 'terrorist',
-            ];
+    // Violence & Illegal Activities
+    'illegal', 'bomb', 'kill', 'murder', 'attack', 'terrorist', 'terrorism',
+    'shooting', 'massacre', 'assassination', 'genocide', 'torture',
+    
+    // Drugs & Substances
+    'drugs', 'cocaine', 'heroin', 'meth', 'methamphetamine', 'fentanyl',
+    'opioid', 'narcotic', 'dealer', 'trafficking',
+    
+    // Weapons
+    'weapons', 'gun', 'firearm', 'explosive', 'grenade', 'ammunition',
+    
+    // Hacking & Cyber Crimes
+    'hack', 'hacker', 'hacking', 'exploit', 'exploits', 'ddos', 'botnet',
+    'ransomware', 'malware', 'virus', 'trojan', 'keylogger', 'phishing',
+    'breach', 'cracking', 'leaked', 'stolen account',
+    
+    // Doxxing & Harassment
+    'doxx', 'dox', 'doxxing', 'doxing', 'swat', 'swatting',
+    'personal info', 'home address', 'phone number', 'social security',
+    
+    // Cheating
+    'cheat', 'cheating', 'aimbot', 'wallhack', 'esp', 'triggerbot',
+    'bhop', 'speedhack', 'mod menu', 'injector',
+    
+    // Fraud & Scams
+    'scam', 'fraud', 'phishing', 'ponzi', 'pyramid scheme',
+    'credit card', 'stolen', 'counterfeit', 'forgery',
+    
+    // Harmful Content
+    'suicide', 'self harm', 'cutting', 'overdose',
+    
+    // Racial Slurs (censored examples)
+    'nigger', 'nigga', 'chink', 'spec', 'kike', 'faggot',
+    'tranny', 'retard', 'cunt',
+    
+    // Other Inappropriate
+    'nazi', 'hitler', 'kkk', 'white power', 'supremacy',
+    'rape', 'molest', 'pedophile', 'child porn', 'cp', 'porn', 	
+]; 	
 
             // Content moderation function
             function moderateContent(text) {
