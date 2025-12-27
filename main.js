@@ -2350,14 +2350,29 @@ function searchByTier(tierQuery, gamemode = null) {
     
     return players.filter(player => {
         if (gamemode) {
-            // Search specific gamemode
             const tier = player.tiers?.[gamemode];
-            return tier && tier.toUpperCase().includes(normalizedQuery);
+            if (!tier) return false;
+            
+            // Check specific patterns
+            if (normalizedQuery === 'HT') return /^HT\d+$/.test(tier);
+            if (normalizedQuery === 'LT') return /^LT\d+$/.test(tier);
+            if (normalizedQuery === 'RT') return /^R/.test(tier);
+            if (/^T\d+$/.test(normalizedQuery)) {
+                const num = normalizedQuery[1];
+                return new RegExp(`^(HT|LT|RHT|RLT)${num}$`).test(tier);
+            }
+            return tier === normalizedQuery;
         } else {
-            // Search all gamemodes
-            return Object.values(player.tiers || {}).some(tier => 
-                tier.toUpperCase().includes(normalizedQuery)
-            );
+            return Object.values(player.tiers || {}).some(tier => {
+                if (normalizedQuery === 'HT') return /^HT\d+$/.test(tier);
+                if (normalizedQuery === 'LT') return /^LT\d+$/.test(tier);
+                if (normalizedQuery === 'RT') return /^R/.test(tier);
+                if (/^T\d+$/.test(normalizedQuery)) {
+                    const num = normalizedQuery[1];
+                    return new RegExp(`^(HT|LT|RHT|RLT)${num}$`).test(tier);
+                }
+                return tier === normalizedQuery;
+            });
         }
     });
 }
@@ -2370,11 +2385,12 @@ function enhanceSearchBox() {
         const value = e.target.value.toLowerCase();
         
         // Detect tier search patterns
-        const tierPattern = /^(ht|lt|rht|rlt)[0-6]$/i;
-        if (tierPattern.test(value.replace(/\s/g, ''))) {
+        const tierPattern = /^#(ht|lt|rt|rht|rlt|t[0-6])$/i;
+        if (tierPattern.test(value.trim())) {
+			const query = value.slice(1); // Remove the # prefix
             searchBox.placeholder = 'Searching by tier...';
             
-            const results = searchByTier(value, currentGamemode !== 'overall' ? currentGamemode : null);
+            const results = searchByTier(query, currentGamemode !== 'overall' ? currentGamemode : null);
             
             // Filter the global players array for rendering
             const searchValue = document.getElementById('searchBox').value.toLowerCase();
