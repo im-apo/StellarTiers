@@ -19,6 +19,12 @@ const STANDBY_TIER_CONFIG = {
     label: '-'
 };
 
+const ALL_GAMEMODES = {
+    main: ['crystal', 'sword', 'uhc', 'potion', 'nethpot', 'smp', 'axe', 'mace', 'diasmp'],
+    sub: ['speed', 'elytra', 'cart', 'ogvanilla'],
+    limited: ['nethuhc', 'nethsword', 'ltm']
+};
+
 // Redirect invalid gamemode URLs safely
 document.addEventListener("DOMContentLoaded", () => {
   const path = location.pathname;
